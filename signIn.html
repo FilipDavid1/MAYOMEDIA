@@ -30,25 +30,65 @@
         </div>
       </nav>
 
-    <div class="center">
-        <h1>Prihlásenie</h1>
-        <form action="login.php" method="post">
-            <div class="txt_field">
-                <input type="text" name="username" required>
-                <span></span>
-                <label>Meno</label>
+      <div class="flex-container" ">
+        <div class="flex-child text">
+          <div class="logo-text">
+            <p class="welcome-text">MAYOMEDIA</p>
+            <img
+              style="width: 65%; text-align: center"
+              src="https://media.discordapp.net/attachments/983375202794741791/1039902875524018186/Untitled_Artwork_6.png"
+              alt=""
+            />
+            <div class="line"></div>
+            
+            <p>Študuj moderne. Študuj v Appslabe</p>
+
+
+          </div>
+        </div>
+      
+        <div class="flex-child card">
+
+            <div class="login-form">
+              <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <h2>Prihlásenie</h2>
+      
+                <div class="form-group has-error">
+                  <input
+                    [(ngModel)]="model.username"
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    placeholder="Prihlasovacie Meno"
+                    required/>
+                </div>
+                <div class="form-group">
+                    
+                  <input
+                    [(ngModel)]="model.password"
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="Heslo"
+                    required="required"/>
+                </div>
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="sign-in-button"
+                    [disabled]="!loginForm.form.valid">
+                    Prihlásiť 
+                  </button>
+                </div>
+                <!--  <p><a (click)="openTempDialog()">Zabudli ste Heslo ?</a></p>-->
+              </form>
+              <p class="text-center small">
+                Nemáte Účet ?
+                <a href="./signUp.html">Zaregistrujte sa Tu!</a>
+              </p>
             </div>
-            <div class="txt_field">
-                <input type="password" name="password" required>
-                <span></span>
-                <label>Heslo</label>
-            </div>
-            <input type="submit" value="Prihlásiť">
-            <div class="signup_link">
-                Nemáš účet? <a href="signUp.html">Registrovať sa</a>
-            </div>
-        </form>
-    </div>
+        </div>
+      </div>
 </body>
 <script src="./nav_bar.js"></script>
 </html>
