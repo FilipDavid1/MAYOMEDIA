@@ -241,13 +241,7 @@ h2 {
         text-align: center;
     }
 
-    body {
-        border-radius: 13px;
-        min-width: 260px;
-        color: #fff;
-        background: #6D4FD8;
-
-    }
+    
 }
 
 
@@ -256,12 +250,12 @@ h2 {
 }
 
 .login-form form {
-  height: 400px;
+    padding: 5em;
     color: #7a7a7a;
     border-radius: 16px;
     background: #AA1A45;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    padding: 35px;
+
 }
 
 .login-form h2 {
@@ -371,4 +365,198 @@ h2 {
 .form-control:focus{
   border-color: #9147ff;
   background: #fff;
+}
+/*registration*/
+
+.card {
+  border: none;
+}
+.register-container {
+  background-color: #AA1A45;
+  display: flex;
+  flex-direction:row-reverse;
+  overflow-y: scroll;
+  margin: 2em;
+  border-radius: 20px;
+  color: white;
+}
+.register-container:last-child {
+  padding: 5px;
+}
+
+.register-container::-webkit-scrollbar {
+  display: none;
+}
+
+.register-child {
+  flex: 1;
+  text-align: center;
+
+}  
+
+.register-child:first-child {
+  margin-right: 20px;
+} 
+
+.card-title {
+  text-align: center;
+}
+
+.registration-card {
+  width: 200px;
+  text-align: center;
+}
+
+.example-full-width {
+  
+  font-size: large;
+}
+
+.welcome-text {
+  font-size: xx-large;
+}
+
+
+.form-control {
+  min-height: 41px;
+  box-shadow: none;
+  
+}
+.form-control:focus {
+  border-color: #6D4FD8;
+}
+.form-control, .btn {        
+  border-radius: 3px;
+}
+.signup-form {
+  min-width: 340px;
+  max-width: 450px;
+  width: auto;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.logo-text {
+  width: auto;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+@media screen and (max-width: 992px) {
+  .register-container {
+      display: flex;
+      flex-direction: row;
+  }
+  .signup-form {
+      min-width: 220px;
+      max-width: 300px;
+      width: auto;
+      margin: 0 auto;
+      padding: 30px 0;
+  }
+  .welcome-text {
+      font-size: large;
+      text-align: center;
+  }
+  p {
+      text-align: center;
+  }
+
+  
+}
+
+
+@media screen and (max-width: 770px) {
+  .register-container {
+      display: flex;
+      flex-direction: column-reverse;
+  }
+  .signup-form {
+      min-width: 250px;
+      max-width: 300px;
+      width: auto;
+      margin: 0 auto;
+      padding: 30px 0;
+  }
+  .welcome-text {
+      font-size: large;
+      text-align: center;
+  }
+  .logo-text{
+      text-align: center;
+  }
+  p {
+      text-align: center;
+  }
+  img {
+      text-align: center;
+  }
+  
+}
+
+
+.signup-form form {
+  color: #999;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  background: #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.signup-form h2 {
+  color: #333;
+  font-weight: bold;
+  margin-top: 0;
+}
+.signup-form hr {
+  margin: 0 -30px 20px;
+}
+.signup-form .form-group {
+  margin-bottom: 20px;
+}
+.signup-form label {
+  font-weight: normal;
+  font-size: 13px;
+}
+.signup-form input[type="checkbox"] {
+  margin-top: 2px;
+}    
+.signup-form .btn {        
+  font-size: 16px;
+  font-weight: bold;
+  background: #6D4FD8;
+  border: none;
+  min-width: 140px;
+}
+
+.signup-form .btn:hover, .signup-form .btn:active {
+  background: #7E87D9;
+  outline: none !important;
+}
+.signup-form a {
+  color: #fff;
+  text-decoration: underline;
+}
+.signup-form a:hover {
+  text-decoration: none;
+}
+.signup-form form a {
+  color: #6D4FD8;
+  text-decoration: none;
+}
+.signup-form form a:hover {
+  text-decoration: underline;
+}
+
+.line {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 5px;
+  width: 410px;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
