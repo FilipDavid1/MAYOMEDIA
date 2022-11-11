@@ -70,6 +70,7 @@ registerBtn.addEventListener("click", (e) => {
         set(ref(database, 'users/' + user.uid), {
           email: email,
           password: password,
+          last_login: Date.now(),
         }).then(() => {
           // Data saved successfully!
           window.location.replace("./signIn.html");
@@ -103,6 +104,9 @@ else {
 
 
 loginBtn.addEventListener("click", (e) => {
+
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
