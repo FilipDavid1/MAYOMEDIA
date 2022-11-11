@@ -1,22 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js";
-import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
-
-
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyBsEPDd_V_oxiA_hfNFFn1n0dOTAdHPscE",
-  authDomain: "mayomedia-72317.firebaseapp.com",
-  databaseURL: "https://mayomedia-72317-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "mayomedia-72317",
-  storageBucket: "mayomedia-72317.appspot.com",
-  messagingSenderId: "150149852780",
-  appId: "1:150149852780:web:3ae4926c3644570c74f249"
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const database = getDatabase();
+import { auth, database, set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "./firebase.js";
 
 function emailValidation(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -51,7 +33,7 @@ function passwordMatch(password, password2) {
 
 
 registerBtn.addEventListener("click", (e) => {
-
+  document.getElementsByClassName("loader")[0].style.display = "block";
   
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
@@ -69,42 +51,49 @@ registerBtn.addEventListener("click", (e) => {
 
         set(ref(database, 'users/' + user.uid), {
           email: email,
-          password: password,
           last_login: Date.now(),
         }).then(() => {
           // Data saved successfully!
+          
+          document.getElementsByClassName("loader")[0].style.display = "none";
           window.location.replace("./signIn.html");
         })
           .catch((error) => {
             // The write failed...
-
+            document.getElementsByClassName("loader")[0].style.display = "none";
+            console.log(error);
           });
 
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      document.getElementsByClassName("loader")[0].style.display = "none";
       // ..
     });
 
 }
 else if (!emailValidation(email)) {
   document.getElementById('emailLabel').style.visibility = "visible";
+  document.getElementsByClassName("loader")[0].style.display = "none";
 }
 else if (!passwordValidation(password)) {
   document.getElementById('passwordLabel').style.visibility = "visible";
+  document.getElementsByClassName("loader")[0].style.display = "none";
 }
 else if (!passwordMatch(password, repPassword)) {
   document.getElementById('repPasswordLabel').style.visibility = "visible";
+  document.getElementsByClassName("loader")[0].style.display = "none";
 }
 else {
   alert("Something went wrong");
+  document.getElementsByClassName("loader")[0].style.display = "none";
 }
 })
 
 
 loginBtn.addEventListener("click", (e) => {
-
+  document.getElementsByClassName("loader")[0].style.display = "block";
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
 
@@ -119,6 +108,7 @@ loginBtn.addEventListener("click", (e) => {
         last_login: lgDate,
       }).then(() => {
         // Data saved successfully!
+        document.getElementsByClassName("loader")[0].style.display = "none";
         window.location.replace("./index.html");
       })
         .catch((error) => {
