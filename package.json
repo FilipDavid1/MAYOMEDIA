@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/FilipDavid1/MAYOMEDIA#readme",
   "dependencies": {
-    "firebase": "^9.13.0"
+    "firebase": "^9.13.0",
+    "firebaseui": "^6.0.1"
   }
 }

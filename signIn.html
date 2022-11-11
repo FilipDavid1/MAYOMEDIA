@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 </head>
 <body>
     <nav>
@@ -36,7 +38,7 @@
             <p class="welcome-text">MAYOMEDIA</p>
             <img
               style="width: 65%; text-align: center"
-              src="https://media.discordapp.net/attachments/983375202794741791/1039902875524018186/Untitled_Artwork_6.png"
+              src="https://cdn.discordapp.com/attachments/983375202794741791/1040339994725859348/Untitled_Artwork_6.png"
               alt=""
             />
             <div class="line"></div>
@@ -50,7 +52,7 @@
         <div class="flex-child card">
 
             <div class="login-form">
-              <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+              <form>
                 <h2>Prihlásenie</h2>
       
                 <div class="form-group has-error">
@@ -75,7 +77,7 @@
                 <div class="form-group">
                   <button
                     type="button"
-                    id="loginBTN"
+                    id="loginBtn"
                     class="sign-in-button">
                     Prihlásiť 
                   </button>
@@ -87,14 +89,16 @@
               <p class="text-center small">
                 Nemáte Účet ?
                 <a href="./signUp.html">Zaregistrujte sa Tu!</a>
+                <p id="registerBtn"></p>
               </p>
             </div>
         </div>
       </div>
 
-
+    
 </body>
 
 <script src="./nav_bar.js"></script>
-<script type="module" src="./index.js"></script>
 </html>
+
+<script src="auth.js" type="module"></script>
