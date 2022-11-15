@@ -10,18 +10,19 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    overflow: hidden;
     background: rgba(17, 17, 17, 0.647);
   }
   div{
     box-sizing: border-box;
   }
   nav{
-    background: #111;
+    background: #AA1A45;
     display: flex;
     justify-content:space-around;
     align-items: center;
-    color: #fff;
+    color: #252525;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
   }
   .nav-links {
       display: flex;
@@ -39,7 +40,7 @@ body{
     transform: translateX(0%);
   }
   .nav-links a:hover{
-    color:#c1dbe9;
+    color:#252525;
     letter-spacing: 5px;
   }
   .burger{
@@ -119,8 +120,9 @@ body{
      transform: rotate(45deg) translate(-5px,-6px );
   }
 
+  
   .logo h2 {
-    color: white;
+    color: #fff;
   }
 
   /* login */
@@ -660,4 +662,71 @@ h2 {
 
   .welcome .text p {
     padding: 0px 4em;
+  }
+
+  .about {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #E3E3E3;
+  }
+  .about-text{
+    width: 50%;
+  }
+
+  .about .about-text h3 {
+    font-size: 2em;
+  }
+
+  .about .about-text h2 {
+    font-size: 3em;
+  }
+
+  .about .about-text p {
+    font-size: 1.5em;
+  }
+
+  .about .about-img {
+    padding: 5em 0 5em 5em;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .about-img img:last-child {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  .about-img img:first-child{
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+  }
+
+  .about-img img:last-child{
+    position: absolute;
+    bottom: 4em;
+    left: 4em;
+  }
+
+  .parent {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .image1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 60px red solid;
+  }
+  .image2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    border: 60px green solid;
   }
