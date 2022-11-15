@@ -11,13 +11,13 @@ body{
     padding: 0;
     font-family: sans-serif;
     overflow: hidden;
-    background: #111;
+    background: rgba(17, 17, 17, 0.647);
   }
   div{
     box-sizing: border-box;
   }
   nav{
-    background: #252525;
+    background: #111;
     display: flex;
     justify-content:space-around;
     align-items: center;
@@ -620,3 +620,44 @@ h2 {
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  /*welcome text and image index.html*/
+
+  .welcome {
+    display: flex;
+  }
+
+  .welcome .images {
+    background-color: rgba(17, 17, 17, 0.826);
+  }
+
+  .welcome .text {
+    display: flex;
+    flex-direction: column;
+    background-color: #252525;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .welcome .text h1 {
+    font-size: 5em;
+    margin-bottom: 0.2em;
+  }
+
+  .welcome .text h2 {
+    color: white;
+    font-size: 4em;
+    background-color: #AA1A45;
+    text-align: center;
+    width: fit-content;
+    margin-top: 0px;
+    padding: 0.4em;
+    border-radius: 5px;
+  }
+
+  .welcome .text p {
+    padding: 0px 4em;
+  }
