@@ -10,7 +10,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: rgba(17, 17, 17, 0.647);
+  background-color: #252525;
   }
   div{
     box-sizing: border-box;
@@ -310,7 +310,7 @@ h2 {
     width: 410px;
 }
 
-.sign-in-button {
+.button {
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
@@ -340,16 +340,16 @@ h2 {
   font-size: 18px;
 }
 
-.sign-in-button:focus {
+.button:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
-.sign-in-button:hover {
+.button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-.sign-in-button:active {
+.button:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
@@ -680,6 +680,9 @@ h2 {
 
   .about .about-text h2 {
     font-size: 3em;
+    text-decoration: underline;
+    text-decoration-color: #AA1A45;
+    text-decoration-thickness: 6px;
   }
 
   .about .about-text p {
@@ -713,20 +716,107 @@ h2 {
     left: 4em;
   }
 
-  .parent {
-    position: relative;
-    top: 0;
-    left: 0;
+  .services {
+    display: flex;
+    align-items: center;
+    background-color: #252525;
   }
-  .image1 {
-    position: relative;
-    top: 0;
-    left: 0;
-    border: 60px red solid;
+
+  .service-container h2{
+    margin: 0;
+    padding: 0 0 0 2em;
+    color: white;
   }
-  .image2 {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    border: 60px green solid;
+
+  .service-container h2:first-child{
+    font-size: 3em;
+    text-decoration: underline;
+    text-decoration-color: #AA1A45;
+    text-decoration-thickness: 6px;
   }
+  
+  .service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin: 2em;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .service img {
+    width: 50%;
+    height: auto;
+    margin-bottom: 1em;
+  }
+
+  .heh {
+    background-color: red;
+    width: min-content;
+  }
+  
+  /*footer*/
+  .center {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 13px;
+    text-align: center;
+    padding: 10px;
+    height: auto;
+    justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  text-align: center;
+  color : black;
+  flex-direction: row;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-bottom: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  margin: 3em;
+}
+
+.card-text h3 {
+  font-size: 2em;
+  margin: 5px 0  10px 0;
+  padding: 0;
+}
+
+.card-text p {
+  font-size: 1.2em;
+}
+.card-images{
+  width: 100%;
+  height: auto;
+
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex button {
+  background-color: #AA1A45;
+  color: white;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#AA1A45 0 -3px 0 inset;
+  font-size: 1.5em;
+}
+
+.flex button:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
+}
