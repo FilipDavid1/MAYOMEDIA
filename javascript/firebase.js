@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js";
 import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
-
+import { getFirestore, doc, addDoc, collection, getDocs, onSnapshot, deleteDoc} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-storage.js';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -14,8 +15,15 @@ var firebaseConfig = {
   appId: "1:150149852780:web:3ae4926c3644570c74f249"
 };
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const database = getDatabase();
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+export const database = getDatabase();
 
-export { auth, database, set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword };
+// initialize firestore
+export const db = getFirestore();
+
+
+
+
+export { set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, doc, addDoc, collection, getDocs, onSnapshot, deleteDoc };
+export { sRef, uploadBytesResumable, getDownloadURL, getStorage };

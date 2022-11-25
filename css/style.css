@@ -366,6 +366,7 @@ h2 {
   display: block;
   width: 100%;
   height: auto;
+  margin-bottom: 0.5em;
 }
 .form-control:hover {
   border-color: #ccc;
@@ -819,4 +820,24 @@ h2 {
 
 .flex button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
+}
+
+.flex button:focus {
+  box-shadow: #AA1A45 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
+}
+/*services*/
+.service-container {
+  margin: auto;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 13px;
+  text-align: center;
+  padding: 10px;
+  height: auto;
+  justify-content: space-around;
+}
+.cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

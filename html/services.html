@@ -21,7 +21,7 @@
             <a href="./services.html">Služby</a> 
             <a href="./content.html">Tvorba</a> 
             <a href="./contact.html">Kontakt</a>
-            <button href="./signIn.html">Prihlásiť sa</button>
+            <a href="./signIn.html">Prihlásiť sa</a>
         </ul>
         <div class="burger">
           <div class="line1"></div>
@@ -30,8 +30,19 @@
         </div>
       </nav>
 
+      <div class="service-container" style="background-color: white; width: 90%; height:auto; margin-top: 1em;">
+        <h1 id="service-name"></h1>
+        <div class="cont">
+            <div class="img-section">
+                <img id="img" src="" alt="" style="width: 200px; height:auto;">
+                <h2 id="price"></h2>
+            </div>
+            <div class="name-section">
+                <select name="" id="select"></select>
 
-      
+            </div>
+        </div> 
+    </div>
 </body>
 <script src="../javascript/nav_bar.js"></script>
 <script type="module" src="../javascript/firestore.js"></script>
