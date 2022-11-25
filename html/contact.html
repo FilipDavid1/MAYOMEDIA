@@ -12,23 +12,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <h2>MAYOMEDIA</h2>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+            MAYOMEDIA
+          </div>
         </div>
-        <ul class="nav-links"> 
-            <a href="./index.html">Domov</a>
-            <a href="./services.html">Služby</a> 
-            <a href="./content.html">Tvorba</a> 
-            <a href="./contact.html">Kontakt</a>
-            <button href="./signIn.html">Prihlásiť sa</button>
-        </ul>
-        <div class="burger">
-          <div class="line1"></div>
-          <div class="line2"></div>
-          <div class="line3"></div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
         </div>
-      </nav>
+        
+        <div class="nav-links">
+          <a href="./index.html" target="_blank">Domov</a>
+          <a href="./services.html" target="_blank">Služby</a>
+          <a href="./content.html" target="_blank">Tvorba</a>
+          <a href="./contact.html" target="_blank">Kontakt</a>
+          <a href="signIn.html" target="_blank">Prihlásiť sa</a>
+        </div>
+      </div>
 </body>
-<script src="../javascript/nav_bar.js"></script>
+
 </html>
