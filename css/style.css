@@ -225,7 +225,7 @@ body {
 
 
 
-
+ @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
 
 *{
   font-family: 'Dosis', sans-serif;
@@ -911,7 +911,7 @@ h2 {
   }
 
   .service-container h2{
-    text-align: end;
+    text-align: center;
     margin: 0;
     padding-right: 2em;
     color: white;
@@ -998,6 +998,7 @@ h2 {
   margin: 1rem;
   position: relative;
   overflow: hidden;
+  height: 35em;
 }
 
 .slides-container {
@@ -1057,6 +1058,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .flex button {
@@ -1073,19 +1075,117 @@ h2 {
 .flex button:focus {
   box-shadow: #AA1A45 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
 }
-/*services*/
+/*services.html*/
 .service-container {
-  margin: auto;
-  align-items: center;
-  flex-direction: row;
-  border-radius: 13px;
-  text-align: center;
-  padding: 10px;
-  height: auto;
-  justify-content: space-around;
-}
-.cont {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  
 }
+.content {
+  background-color: white;
+  justify-content: space-around;
+  color: #252525;
+  width: 90%;
+  margin: 2em auto;
+  border-radius: 10px;
+}
+.content h1 {
+  font-size: 3em;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: #AA1A45;
+  text-decoration-thickness: 6px;
+}
+.cont img {
+  text-align: center;
+  margin-top: 1em;
+  max-width: 60%;
+  padding: 1em;
+
+}
+.cont h2 {
+  color: #252525;
+  text-align: start;
+  margin: 0 1em 1em 1em;
+  border-radius: 10px;
+  background-color: #AA1A45;
+  color: white;
+  width: fit-content;
+  padding: 0.5em;
+  font-size: 2em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cont .select{
+  margin-bottom: 0.5em;
+}
+
+.cont button {
+  margin-top: 0.5em;
+  width: 8em;
+  font-weight: 500;
+  font-size: x-large;
+  height: 2em;
+}
+
+
+.cont:last-child {
+  padding-right: 5rem;
+  text-align: center;
+}
+
+
+
+
+
+/*select*/
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #252525;
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+  color: white;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #252525;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: rgb(233, 233, 233);
+}
+
+
