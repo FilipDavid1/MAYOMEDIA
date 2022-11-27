@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAYOMEDIA</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAYOMEDIA</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  
+
 </head>
+
 <body>
-    <div class="nav">
-        <input type="checkbox" id="nav-check">
-        <div class="nav-header">
-          <div class="nav-title">
-            MAYOMEDIA
-          </div>
-        </div>
-        <div class="nav-btn">
-          <label for="nav-check">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
-        </div>
-        
-        <div class="nav-links">
-          <a href="./index.html" target="_blank">Domov</a>
-          <a href="./services.html" target="_blank">Služby</a>
-          <a href="./content.html" target="_blank">Tvorba</a>
-          <a href="./contact.html" target="_blank">Kontakt</a>
-          <a href="signIn.html" target="_blank">Prihlásiť sa</a>
-        </div>
+  <div class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+      <div class="nav-title">
+        MAYOMEDIA
       </div>
-
-      <div class="service-container" style="background-color: white; width: 90%; height:auto; margin-top: 1em;">
-        <h1 id="service-name"></h1>
-        <div class="cont">
-            <div class="img-section">
-                <img id="img" src="" alt="" style="width: 200px; height:auto;">
-                <h2 id="price"></h2>
-            </div>
-            <div class="name-section">
-                <select name="" id="select"></select>
-
-            </div>
-        </div> 
     </div>
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+
+    <div class="nav-links">
+      <a href="./index.html" target="_blank">Domov</a>
+      <a href="./services.html" target="_blank">Služby</a>
+      <a href="./content.html" target="_blank">Tvorba</a>
+      <a href="./contact.html" target="_blank">Kontakt</a>
+      <a href="signIn.html" target="_blank">Prihlásiť sa</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1 id="service-name"></h1>
+    <div class="service-container">
+
+      <div class="cont">
+        <img id="img" src="" alt="" style="border-radius: 10px;">
+        <h2 id="price" ></h2>
+
+      </div>
+      <div class="cont">
+        <div class="select">
+          <select name="select-option" id="select">
+            <option value="1">Vyberte Event</option>
+          </select>
+        </div>
+
+        <input class="calendar" id="cal" type="datetime-local" placeholder="Vyberte dátum" style="visibility: hidden;">
+        <button class="button" id="submit">Dohodnut</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("#cal", {
+      inline: true
+    });
+  </script>
 </body>
 <script type="module" src="../javascript/firestore.js"></script>
+
 </html>
