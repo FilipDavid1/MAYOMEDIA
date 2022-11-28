@@ -1,4 +1,10 @@
+
 import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
+
+//html elements
+const button = document.getElementById('submit');
+const reserveBtn = document.getElementById('reserve');
+const form = document.getElementById('form');
 
 //collection reference
 const colRef = collection(db, 'services');
@@ -31,9 +37,27 @@ onSnapshot(colRef, (querySnapshot) => {
         })
 });
 
-const button = document.getElementById('submit');
+
 
 button.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    
+    const content = document.getElementById('services-content');
+    
+    if(form.style.display === 'none' || form.style.display === ''){
+        //show form with animation
+
+        form.style.display = 'block';
+        content.style.opacity = 0.5;
+    }
+    else{
+        form.style.display = 'none';
+        content.style.opacity = 1;
+    }
+});
+
+reserveBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let selected = services.find(service => service.name === select.value);
     let name = document.getElementById('name').value;
@@ -49,11 +73,18 @@ button.addEventListener('click', (e) => {
         message,
         service: selected.name,
     }
+    form.style.display = 'none';
+    content.style.opacity = 1;
+
+    //add data to firestore
     addDoc(eventRef, data);
-
     
-});
-
+    swal({
+        title: "Rezervácia bola úspešná",
+        icon: "success",
+        button: "OK",
+    })
+})
 
 // add data
 // const testForm = document.querySelector('.testForm');
