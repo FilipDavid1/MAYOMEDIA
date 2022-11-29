@@ -16,6 +16,7 @@ onSnapshot(colRef, (querySnapshot) => {
     
     let select = document.getElementById('select');
     let price = document.getElementById('price');
+    let priceM = document.getElementById('price-m');
     let img = document.getElementById('img');
     let name = document.getElementById('service-name');
     let button = document.getElementById('submit');
@@ -23,7 +24,8 @@ onSnapshot(colRef, (querySnapshot) => {
             services.push({ ...doc.data() })
         })
         price.innerHTML = 'Cena: ' + services[0].price + '€';
-        
+        priceM.innerHTML = 'Cena: ' + services[0].price + '€';
+
         img.src = services[0].img;
         name.innerHTML = services[0].name;
         select.innerHTML = services.map(service => `<option value="${service.name}">${service.name}</option>`).join('');
@@ -32,6 +34,8 @@ onSnapshot(colRef, (querySnapshot) => {
             let selected = services.find(service => service.name === e.target.value);
             
             price.innerHTML = 'Cena: ' + selected.price + '€';
+            priceM.innerHTML = 'Cena: ' + selected.price + '€';
+        
             img.src = selected.img;
             name.innerHTML = selected.name;
         })

@@ -548,9 +548,26 @@ h2 {
     flex-direction: column !important;
   }
 
-  .cont h2 {
-    margin: 0 !important;
+  .cont .price {
+    display: none;
   }
+  .cont .price-m {
+    display: block !important;
+  }
+  .content {
+    height: 42em;
+  }
+  .content h1 {
+    margin-bottom: 1em !important;
+  }
+  .flatpickr-calendar {
+    margin-bottom: 2em !important;
+  }
+  .cont h2 {
+    width: auto !important;
+    text-align: center !important;
+  }
+
  
 }
 
@@ -1199,7 +1216,8 @@ h2 {
   margin-top: 1em;
   max-width: 60%;
   padding: 1em;
-
+  background-color: #252525;
+  margin-left: 1em;
 }
 
 .cont h2 {
