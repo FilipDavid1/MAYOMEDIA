@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class="content" id="services-content">
+  <form class="content" id="services-content">
     <h1 id="service-name"></h1>
     <div class="service-container" id="services-content">
 
@@ -52,16 +52,16 @@
       </div>
       <div class="cont">
         <div class="select">
-          <select name="select-option" id="select">
+          <select name="select-option" id="select" required>
             <option value="1">Vyberte Event</option>
           </select>
         </div>
 
-        <input class="calendar" id="cal" type="datetime-local" placeholder="Vyberte dátum" style="visibility: hidden;">
+        <input required class="calendar" id="cal" type="datetime-local" placeholder="Vyberte dátum" style="visibility: hidden;">
         <button class="button submit" id="submit">Dohodnut</button>
       </div>
     </div>
-  </div>
+  </form>
 
   <form class="form" id="form">
     <span class="close">&#x2715</span>

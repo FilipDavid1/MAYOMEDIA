@@ -397,6 +397,11 @@ h2 {
     text-align: center;
   }
 
+  /*contact us*/
+  .contact-form {
+    width: 65% !important;
+  }
+
 }
 
 
@@ -492,6 +497,21 @@ h2 {
   .service-container h2 {
     padding: 0 !important;
   }
+
+  /*contact us*/
+  .contact-form {
+    width: 90% !important;
+  }
+
+  .contact {
+    flex-direction: column-reverse !important;
+  }
+
+  .contact-sections {
+    flex-direction: column !important;
+  }
+
+
 }
 
 
@@ -1238,7 +1258,7 @@ select::-ms-expand {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
   position: absolute;
-  left: 38%;
+  left: 33%;
   top: -10%;
   animation: pop 0.4s ;
   animation-timing-function: ease-in;
@@ -1263,7 +1283,7 @@ select::-ms-expand {
   font-size: 1.8em;
 }
 
-.form input, textarea {
+.form, .contact-form-text, input, textarea {
   width: 100%;
   padding: 10px 0px;
   box-sizing: border-box;
@@ -1276,7 +1296,7 @@ select::-ms-expand {
   border-bottom: 2px solid #bebed2;
 }
 
-.form input:focus,textarea:focus {
+.form input:focus,textarea:focus, .contact-form-text:focus {
   border-bottom: 2px solid #AA1A45
 }
 
@@ -1287,8 +1307,6 @@ select::-ms-expand {
   font-size: 20px;
   color: #252525
 }
-
-
 
 .form span {
   position: relative;
@@ -1303,4 +1321,58 @@ select::-ms-expand {
 .form span:hover {
   cursor: pointer;
   color: #AA1A45;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+}
+
+.contact-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  
+}
+
+.item {
+  border-radius: 10px;
+  text-align: center;
+  padding: 0.2em;
+  margin: 0.7em;
+  transition: all 0.4s ease;
+}
+
+.item:hover {
+  background-color: #AA1A45;
+  color: white;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+  width: 38%;
+  height: 100%;
+  padding: 1em;
+  background-color: white;
+}
+
+.contact-form input, textarea {
+  margin-bottom: 1em;
 }
