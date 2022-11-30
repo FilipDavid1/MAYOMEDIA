@@ -49,4 +49,28 @@ onSnapshot(serviceRef, (querySnapshot) => {
         </div>
         </div>
     </div>`).join('');
+
+    //cards for mobile
+    let cardContainerM = document.getElementById('slides-container');
+    cardContainerM.innerHTML = services.map(service => `
+    <li class="slide">
+        <div class="card">
+            <div class="card-text">
+                <h3>${service.name}</h3>
+            <div class="flex">
+                <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em;">
+                <button class="button" id="reserve">Detail</button>
+            </div>
+            </div>
+        </div>
+    </li>`).join('');
+
 })
+
+
+//service button move to service page
+// const reserveBtn = document.getElementById('reserve');
+// reserveBtn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     window.location.href = 'services.html';
+// })
