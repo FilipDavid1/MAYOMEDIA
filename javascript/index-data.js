@@ -45,7 +45,7 @@ onSnapshot(serviceRef, (querySnapshot) => {
             <h3>${service.name}</h3>
         <div class="flex">
             <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em;">
-            <button class="button" id="reserve">Detail</button>
+            <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
         </div>
         </div>
     </div>`).join('');
@@ -61,7 +61,7 @@ onSnapshot(serviceRef, (querySnapshot) => {
                 <h3>${service.name}</h3>
             <div class="flex">
                 <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em;">
-                <button class="button" id="reserve">Detail</button>
+                <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
             </div>
             </div>
         </div>
