@@ -66,16 +66,16 @@
               
         </div>
           <div class="services-mobile">
-            <section class="slider-wrapper">
+            <section class="slider-wrapper" style="display: flex; flex-direction:row;">
               <button class="slide-arrow" id="slide-arrow-prev">
                 &#8249;
               </button>
+              
+              <ul class="slides-container" id="slides-container"></ul>
+
               <button class="slide-arrow" id="slide-arrow-next">
                 &#8250;
               </button>
-              <ul class="slides-container" id="slides-container">
-
-              </ul>
             </section>
           </div>
       </div>
@@ -101,24 +101,6 @@
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Vymazat z databazy</button>
       </form> -->
-
-      <script>
-        const slidesContainer = document.getElementById("slides-container");
-        const slide = document.querySelector(".slide");
-        const prevButton = document.getElementById("slide-arrow-prev");
-        const nextButton = document.getElementById("slide-arrow-next");
-
-        nextButton.addEventListener("click", () => {
-          const slideWidth = slide.clientWidth;
-          slidesContainer.scrollLeft += slideWidth;
-        });
-
-        prevButton.addEventListener("click", () => {
-          const slideWidth = slide.clientWidth;
-          slidesContainer.scrollLeft -= slideWidth;
-        });
-
-      </script>
 
       <script type="module" src="../javascript/index-data.js"></script>
 </body>

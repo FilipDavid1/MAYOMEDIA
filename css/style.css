@@ -430,6 +430,7 @@ h2 {
 
 
 @media screen and (max-width: 770px) {
+  
   .flex-container {
     display: flex;
     flex-direction: column-reverse;
@@ -519,6 +520,15 @@ h2 {
   }
 
   /*services*/
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    background-color: #AA1A45;
+    color: white;
+    padding-bottom: 1em;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 10px;
+  }
   .service-carousel .center {
     flex-direction: column;
   }
@@ -1124,18 +1134,16 @@ h2 {
 }
 
 .slides-container {
-  height: calc(100vh - 2rem);
   width: 100%;
   display: flex;
   overflow: scroll;
   scroll-behavior: smooth;
   list-style: none;
   margin: 0;
-  padding: 3em 0;
+  padding: 6em 0;
 }
 
 .slide-arrow {
-  position: absolute;
   display: flex;
   top: 0;
   bottom: 0;

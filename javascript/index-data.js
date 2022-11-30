@@ -50,6 +50,8 @@ onSnapshot(serviceRef, (querySnapshot) => {
         </div>
     </div>`).join('');
 
+    
+
     //cards for mobile
     let cardContainerM = document.getElementById('slides-container');
     cardContainerM.innerHTML = services.map(service => `
@@ -64,8 +66,24 @@ onSnapshot(serviceRef, (querySnapshot) => {
             </div>
         </div>
     </li>`).join('');
-
 })
+
+    const slidesContainer = document.getElementById("slides-container");
+    const slide = document.querySelector(".slide");
+    const prevButton = document.getElementById("slide-arrow-prev");
+    const nextButton = document.getElementById("slide-arrow-next");
+    const testOfS = document.getElementById('slides-container');
+
+    let slideWidth = 0;
+    nextButton.addEventListener("click", () => {
+        slideWidth = testOfS.offsetWidth;
+    slidesContainer.scrollLeft += slideWidth;
+    });
+
+    prevButton.addEventListener("click", () => {
+        slideWidth = testOfS.offsetWidth;
+    slidesContainer.scrollLeft -= slideWidth;
+    });
 
 
 //service button move to service page
