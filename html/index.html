@@ -41,9 +41,9 @@
           <img src="../images/drawing_white.png" alt="MAYOMEDIA image">
         </div>
         <div class="text">
-          <h1 class="heh">MAYOMEDIA</h1>
-          <h2>KAMERA A STRIH</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas expedita, blanditiis perferendis doloribus provident, quisquam, quam explicabo molestiae aliquam dolores reprehenderit debitis. Labore nisi ipsa dolore provident, consectetur aut doloribus.</p>
+          <h1 class="heh" id="name-welcome"></h1>
+          <h2 id="service-w"></h2>
+          <p id="text-welcome"></p>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
         <div class="about-text">
           <h3>O Mne</h3>
           <h2>AHOJ</h2>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia obcaecati sapiente eveniet accusamus rem nulla quaerat nemo, quibusdam iste excepturi libero laborum hic tempora provident unde delectus esse odio vero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sit rem omnis quaerat. Ipsum, ut. In quidem possimus deserunt dolorum aut vitae, quod nostrum labore aliquid ipsa eius natus omnis!</p>
+          <p id="text-about"></p>
         </div>
         <div class="about-img">
           <img src="https://www.cmu.edu/brand/brand-guidelines/images/colors-black-600x600.png" alt="img">
@@ -61,29 +61,9 @@
 
       <div class="service-carousel" style="background-color: #252525;">
         <h2>Služby</h2>
-        <div class="center">
-          <div class="services-pc">
-              <div class="card">
-                <div class="card-text">
-                  <h3>Osobné stretnutie</h3>
-                  <div class="flex">
-                    <img class="card-images" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="" />
-                    <p>Osobné stretnutie na spresnenie informácií</p>
-                    <button class="button">Dohodnúť</button>
-                  </div>
-                </div>
-              </div>
-
-            <div class="card">
-              <div class="card-text">
-                <h3>Natáčanie a strih</h3>
-                <div class="flex">
-                  <img class="card-images" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="" />
-                  <p>Rezervácia kameramana na vybraný event</p>
-                  <button class="button">Vybrať</button>
-              </div>
-              </div>
-          </div>
+        <div class="center" >
+          <div class="services-pc" id="card-container">
+              
         </div>
           <div class="services-mobile">
             <section class="slider-wrapper">
@@ -165,6 +145,8 @@
         });
 
       </script>
+
+      <script type="module" src="../javascript/index-data.js"></script>
 </body>
 
     

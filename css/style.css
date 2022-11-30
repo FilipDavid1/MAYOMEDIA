@@ -1082,7 +1082,8 @@ h2 {
 .card-text {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: #AA1A45;
+  color: white;
   padding-bottom: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
@@ -1178,21 +1179,6 @@ h2 {
   justify-content: center;
   align-items: center;
 
-}
-
-.flex button {
-  background-color: #AA1A45;
-  color: white;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
-  font-size: 1.5em;
-}
-
-.flex button:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
-}
-
-.flex button:focus {
-  box-shadow: #AA1A45 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #AA1A45 0 -3px 0 inset;
 }
 
 /*services.html*/
