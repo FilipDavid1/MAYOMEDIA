@@ -245,7 +245,7 @@ body {
   justify-content: center;
 }
 
-.flex-container {
+.flex-c {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -256,11 +256,11 @@ body {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-.flex-container:last-child {
+.flex-c:last-child {
   padding: 5px;
 }
 
-.flex-child {
+.flex-ch {
   flex: 1;
 }
 
@@ -385,7 +385,7 @@ h2 {
     overflow-y: auto;
   }
 
-  .flex-container {
+  .flex-c {
     display: flex;
     flex-direction: row;
   }
@@ -431,7 +431,7 @@ h2 {
 
 @media screen and (max-width: 770px) {
   
-  .flex-container {
+  .flex-c {
     display: flex;
     flex-direction: column-reverse;
   }
@@ -562,6 +562,10 @@ h2 {
 
   .service-container {
     flex-direction: column !important;
+  }
+
+  .cont {
+    flex-grow: 1 1 0px;
   }
 
   .cont .price {
@@ -1193,87 +1197,7 @@ h2 {
 
 }
 
-/*services.html*/
-.service-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 
-}
-
-.content {
-  background-color: white;
-  justify-content: space-around;
-  color: #252525;
-  width: 90%;
-  margin: 2em auto;
-  border-radius: 10px;
-}
-
-.content h1 {
-  font-size: 3em;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  text-decoration: underline;
-  text-decoration-color: #AA1A45;
-  text-decoration-thickness: 6px;
-}
-
-.cont img {
-  text-align: center;
-  margin-top: 1em;
-  max-width: 60%;
-  padding: 1em;
-  background-color: #252525;
-  margin-left: 1em;
-}
-
-.cont h2 {
-  color: #252525;
-  text-align: start;
-  margin: 0 1em 1em 1em;
-  border-radius: 10px;
-  background-color: #AA1A45;
-  color: white;
-  width: fit-content;
-  padding: 0.5em;
-  font-size: 2em;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.cont .select {
-  margin-bottom: 0.5em;
-}
-
-select {
-  /* Reset Select */
-  appearance: none;
-  outline: 0;
-  border: 0;
-  box-shadow: none;
-  /* Personalize */
-  flex: 1;
-  padding: 0 1em;
-  color: #fff;
-  background-color: #AA1A45;
-  cursor: pointer;
-  font-size: 1.5em;
-}
-/* Remove IE arrow */
-select::-ms-expand {
-  display: none;
-}
-/* Custom Select wrapper */
-.select {
-  position: relative;
-  display: flex;
-  width: 20em;
-  height: 3em;
-  border-radius: .25em;
-  overflow: hidden;
-}
 /* Arrow */
 .select::after {
   content: '\25BC';
@@ -1289,21 +1213,6 @@ select::-ms-expand {
 .select:hover::after {
   color: white;
 }
-
-.cont button {
-  margin-top: 0.5em;
-  width: 8em;
-  font-weight: 500;
-  font-size: x-large;
-  height: 2em;
-}
-
-
-.cont:last-child {
-  padding-right: 5rem;
-  text-align: center;
-}
-
 
 
 
@@ -1479,3 +1388,88 @@ select::-ms-expand {
 .contact-form input, textarea {
   margin-bottom: 1em;
 }
+
+
+/*service.html redesign*/
+.flex-container {
+  display: flex;
+  width: 85%;
+  margin: 1em auto;
+  height: auto;
+  max-height: 93vh;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.flex-child {
+  flex: 1;
+}  
+
+.flex-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.flex-child:last-child {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-child h1 {
+  font-size: 4em;
+  font-weight: 600;
+  margin: 0.5em;
+  color: #232323;
+  text-decoration: underline;
+  text-decoration-color: #AA1A45;
+}
+
+.flex-child p {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 0.5em;
+  color: #252525;
+  max-width: 50%;
+  text-align: start;
+  margin-bottom: 3em; 
+}
+
+.flex-child h2 {
+  font-size: 3em;
+  color: #AA1A45;
+  width: 50%;
+  text-align: start !important;
+}
+.flex-child select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #AA1A45;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+/* Remove IE arrow */
+.flex-child select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.flex-child .select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+  margin-bottom: 1em;
+}
+

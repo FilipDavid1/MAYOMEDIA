@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <form class="content" id="services-content">
+  <!-- <form class="content" id="services-content">
     <h1 id="service-name"></h1>
     <div class="service-container" id="services-content">
 
@@ -62,7 +62,28 @@
         <button class="button submit" id="submit">Dohodnut</button>
       </div>
     </div>
-  </form>
+  </form> -->
+
+  <div class="flex-container" id="services-content">
+    <div class="flex-child img">
+      <img src="" alt="" id="img">
+    </div>
+    <div class="flex-child text">
+      <h1 id="service-name"></h1>
+      <p id="service-text"></p>
+      <div class="select">
+        <select name="select-option" id="select" required>
+          <option value="1">Vyberte Event</option>
+        </select>
+      </div>
+
+      <input  required class="calendar" id="cal" type="datetime-local" placeholder="Vyberte dátum" style="display: none;">
+      <h2 class="price" id="price" ></h2>
+      <h2 class="price-m" id="price-m" style="display: none;"></h2>
+      <button class="button submit" id="submit">Dohodnut</button>
+      </div>
+    </div>
+  </div>
 
   <form class="form" id="form">
     <span class="close">&#x2715</span>
