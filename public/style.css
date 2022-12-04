@@ -319,12 +319,10 @@ h2 {
     width: 85%;
   }
   .slide .card {
-    width: 80%;
+    width: 50%;
     position: relative;
-    left: 11%;
-    bottom: 5%;
-    margin-bottom: 3em;
-  }
+    left: 26%;
+}
   .service-carousel .center {
     padding: 0%;
   }
@@ -1144,7 +1142,6 @@ h2 {
   scroll-behavior: smooth;
   list-style: none;
   margin: 0;
-  padding: 6em 0;
 }
 
 .slide-arrow {
@@ -1473,3 +1470,44 @@ h2 {
   margin-bottom: 1em;
 }
 
+/*admin.html*/
+.aside {
+  background: #AA1A45;
+  padding: 10px;
+  width: 200px;
+  position: fixed;
+  height: 100%;
+}
+
+.aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aside ul li {
+  padding: 1em;
+  border-bottom: 1px solid #fff;
+}
+
+.aside img {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 120px;
+}
+
+.aside ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.aside ul li a:hover {
+  display: block;
+  text-decoration: none;
+  color: #252525;
+  transition: 0.5s ease;
+  transform: translateX(0%);
+}

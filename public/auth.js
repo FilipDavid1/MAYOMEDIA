@@ -1,4 +1,4 @@
-import { auth, database, set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "./firebase.js";
+import { auth, database, set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "./firebase.js";
 
 function emailValidation(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,7 +29,7 @@ function passwordMatch(password, password2) {
   }
 }
 
-
+const aboutRef = ref(database, 'about-data');
 
 
 registerBtn.addEventListener("click", (e) => {
@@ -47,14 +47,14 @@ registerBtn.addEventListener("click", (e) => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-
+      
 
         set(ref(database, 'users/' + user.uid), {
+          admin: false,
           email: email,
           last_login: Date.now(),
         }).then(() => {
           // Data saved successfully!
-          
           document.getElementsByClassName("loader")[0].style.display = "none";
           window.location.replace("./signIn.html");
         })
@@ -101,6 +101,8 @@ loginBtn.addEventListener("click", (e) => {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      document.cookie = "user=" + user.uid;
+      const userCookie = document.cookie;
       // ...
       var lgDate = new Date();
 
@@ -109,10 +111,13 @@ loginBtn.addEventListener("click", (e) => {
       }).then(() => {
         // Data saved successfully!
         document.getElementsByClassName("loader")[0].style.display = "none";
-        window.location.replace("./index.html");
+        // window.location.replace("./index.html");
+        
+          window.location.replace("./index.html");
       })
         .catch((error) => {
           // The write failed...
+          document.getElementsByClassName("loader")[0].style.display = "none";
           console.log(error);
         });
     })
@@ -124,3 +129,9 @@ loginBtn.addEventListener("click", (e) => {
     });
 })
 
+// logout
+const logout = document.querySelector('#logout');
+logout. addEventListener ('click', (e) => {
+ e.preventDefault();
+  auth.signOut();
+})

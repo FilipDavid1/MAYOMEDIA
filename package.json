@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --config=Scripts/config/webpack.dev.js --watch",
+    "build": "webpack --config=Scripts/config/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,8 +21,13 @@
   "homepage": "https://github.com/FilipDavid1/MAYOMEDIA#readme",
   "dependencies": {
     "firebase": "^9.13.0",
+    "firebase-tools": "^11.16.1",
     "firebaseui": "^6.0.1",
     "flatpickr": "^4.6.13",
     "sweetalert": "^2.1.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
   }
 }

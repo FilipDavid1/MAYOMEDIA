@@ -1,4 +1,4 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
+import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc , auth} from './firebase.js';
 
 
 //collection reference
@@ -22,15 +22,38 @@ onSnapshot(welcomeRef, (querySnapshot) => {
 })
 
 //about data
-onSnapshot(aboutRef, () =>{
-    let textA = document.getElementById('text-about');
+// onSnapshot(aboutRef, () =>{
+//     let textA = document.getElementById('text-about');
 
-    getDocs(aboutRef).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            textA.innerHTML = doc.data().text;
+//     getDocs(aboutRef).then((querySnapshot) => {
+//         querySnapshot.forEach((doc) => {
+//             textA.innerHTML = doc.data().text;
+//         });
+//     });
+// })
+
+auth.onAuthStateChanged(user => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      onSnapshot(aboutRef, () =>{
+        let textA = document.getElementById('text-about');
+        console.log("User is signed in" + user.uid);
+
+        getDocs(aboutRef).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                textA.innerHTML = doc.data().text;
+            });
         });
-    });
-})
+    })
+      // ...
+    } else {
+      // User is signed out
+      console.log("User is signed out");
+      textA.innerHTML = "Please login to view this content";
+      // ...
+    }
+  });
 
 // foreach service data in card container
 let services = [];
