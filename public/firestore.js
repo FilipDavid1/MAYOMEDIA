@@ -2,8 +2,8 @@
 import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
 
 //html elements
-const button = document.getElementById('submit');
-const reserveBtn = document.getElementById('reserve');
+const bookingForm = document.getElementById('booking-form');
+const credentialsForm = document.getElementById('credentials-form');
 const form = document.getElementById('form');
 
 //collection reference
@@ -47,25 +47,25 @@ onSnapshot(colRef, (querySnapshot) => {
 
 
 
-button.addEventListener('click', (e) => {
+bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     
     const content = document.getElementById('services-content');
     
-    if(form.style.display === 'none' || form.style.display === ''){
+    if(credentialsForm.style.display === 'none' || credentialsForm.style.display === ''){
         //show form with animation
 
-        form.style.display = 'block';
+        credentialsForm.style.display = 'block';
         content.style.opacity = 0.5;
     }
     else{
-        form.style.display = 'none';
+        credentialsForm.style.display = 'none';
         content.style.opacity = 1;
     }
 });
 
-reserveBtn.addEventListener('click', (e) => {
+credentialsForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let selected = services.find(service => service.name === select.value);
     let name = document.getElementById('name').value;
@@ -81,7 +81,7 @@ reserveBtn.addEventListener('click', (e) => {
         message,
         service: selected.name,
     }
-    form.style.display = 'none';
+    credentialsForm.style.display = 'none';
     content.style.opacity = 1;
 
     //add data to firestore

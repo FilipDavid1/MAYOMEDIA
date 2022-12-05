@@ -68,7 +68,7 @@
     <div class="flex-child img">
       <img src="" alt="" id="img">
     </div>
-    <div class="flex-child text">
+    <form class="flex-child text" id="booking-form">
       <h1 id="service-name"></h1>
       <p id="service-text"></p>
       <div class="select">
@@ -80,19 +80,19 @@
       <input  required class="calendar" id="cal" type="datetime-local" placeholder="Vyberte dátum" style="display: none;">
       <h2 class="price" id="price" ></h2>
       <h2 class="price-m" id="price-m" style="display: none;"></h2>
-      <button class="button submit" id="submit">Dohodnut</button>
-      </div>
+      <button type="submit" class="button submit" id="submit">Dohodnut</button>
+      </form>
     </div>
   </div>
 
-  <form class="form" id="form">
+  <form class="form" id="credentials-form">
     <span class="close">&#x2715</span>
     <h2>Prosím vyplnte osobné údaje na dokončenie rezervácie</h2>
     <p type="Meno a Priezvisko:"><input placeholder="Vaše meno" id="name"></input></p>
     <p type="Emailová adresa:"><input type="email" placeholder="example@gmail.com" id="email"></input></p>
     <p type="Telefónne číslo:"><input type="text" name="" id="phone" placeholder="0900 000 000" ></p>
     <p type="Správa pre mňa:"><textarea cols="7" placeholder="Vaše pripomienky, otázky" id="message"></textarea></p>
-    <button class="button" type="button" id="reserve">Rezervovať</button>
+    <button class="button" type="submit" id="reserve">Rezervovať</button>
   </form>
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
