@@ -66,7 +66,11 @@ welcomeSubmit.addEventListener('click', async (e) => {
             welcomeLoader.style.display = "none";
         }).catch((error) => {
             welcomeLoader.style.display = "none";
-            alert('Please login to update data');
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
         });
 });
 
@@ -92,7 +96,11 @@ aboutSubmit.addEventListener('click', async (e) => {
             aboutLoader.style.display = "none";
         }).catch((error) => {
             aboutLoader.style.display = "none";
-            alert('Please login to update data');
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
         });
 });
 
@@ -132,7 +140,11 @@ serviceSubmit.addEventListener('click', async (e) => {
             serviceLoader.style.display = "none";
         }).catch((error) => {
             serviceLoader.style.display = "none";
-            alert('Please login to update data');
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
         });
 });
 
@@ -146,7 +158,11 @@ serviceDelete.addEventListener('click', async (e) => {
         window.location.reload();
     }).catch((error) => {
         serviceLoader.style.display = "none";
-        alert('Please login to update data');
+        swal({
+            title: "Prosím prihláste sa",
+            icon: "warning",
+            button: "OK",
+        })
     });
 });
 
@@ -187,7 +203,11 @@ serviceForm.addEventListener('submit', async (e) => {
             content.style.opacity = 1;
         }).catch((error) => {
             sLoader.style.display = "none";
-            alert('Please login to update data');
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
         });
 });
 
@@ -216,6 +236,10 @@ contactSubmit.addEventListener('click', async (e) => {
             contactLoader.style.display = "none";
         }).catch((error) => {
             contactLoader.style.display = "none";
-            alert('Please login to update data');
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
         });
 });
