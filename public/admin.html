@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
     <div class="nav">
@@ -26,6 +27,7 @@
             <span></span>
           </label>
         </div>
+
         
         <div class="nav-links">
           <a href="./index.html" >Domov</a>
@@ -38,21 +40,88 @@
 
       <div class="aside">
           <img src="https://scontent.fbts7-1.fna.fbcdn.net/v/t39.30808-6/293223490_747438659588505_2878352285681882526_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=OoMHj3u0HOcAX9dOBeE&_nc_ht=scontent.fbts7-1.fna&oh=00_AfCiLfKc9_ZJAqAk1WueFG_YW6j2Pq-ayUPVcLJ8zuP13w&oe=638ED449" alt="">
-        <ul>
-          <li><a href="">Úprava Obsahu Sránky</a></li>
-          <li><a href="">Tvorba</a></li>
-          <li><a href="">Rezervácie</a></li>
-          <li><a href="">Správy</a></li>
+        <ul class="test">
+          <li><a data-content="content1" class="active">Úprava Obsahu Sránky</a></li>
+          <li><a data-content="content2">Tvorba</a></li>
+          <li><a data-content="content3">Rezervácie</a></li>
+          <li><a data-content="content4">Správy</a></li>
         </ul>
       </div>
 
-
+    <div class="page-data" id="page">
+      <section id="welcome-data">
+        <article>
+          <h2>Welcome sekcia</h2>
+          <label for="welcome-name">Meno firmy</label>
+          <textarea name="" id="welcome-name" cols="1" rows="1" name="welcome-name" ></textarea>
+          <label for="welcome-service">Ponukane sluzby</label>
+          <textarea name="" id="welcome-service" cols="1" rows="1" name="welcome-service" ></textarea>
+          <label for="welcome-text">Text na úvodnej stránke</label>
+          <textarea id="welcome-text" name="welcome-text" rows="4" cols="50"></textarea>
+          <button class="button" id="welcome-submit">Uložiť <div class="loader" id="welcome-loader"></div></button>
+        </article>
+      </section>
       
+      <section id="about-data">
+        <article>
+          <h2>O nás sekcia</h2>
+          <label for="about-text">O mne text</label>
+          <textarea id="about-text" name="about-text" rows="4" cols="50"></textarea>
+          <button class="button" id="about-submit">Uložiť <div class="loader" id="about-loader"></div></button>
+        </article>
+      </section>
 
-      
+      <section id="services">
+        <article>
+          <h2>Sekcia služby</h2>
+          <div class="select">
+            <select name="select-option" id="service-select">
+            </select>
+          </div>
+          <label for="service-name">Názov služby</label>
+          <textarea name="service-name" id="service-name" cols="1" rows="1" name="service-name" ></textarea>
+          <label for="service-text">Text o službe</label>
+          <textarea id="service-text" name="service-text" rows="4" cols="50"></textarea>
+          <label for="service-price">cena</label>
+          <textarea name="service-price" id="service-price" cols="1" rows="1" name="service-price" ></textarea>
+          <button class="button" id="service-submit">Uložiť <div class="loader" id="service-loader"></div></button>
+          <button class="button" id="service-delete">Vymazať <div class="loader" id="service-loader"></div></button>
+          <button class="button" id="service-add">Pridať <div class="loader" id="service-loader"></div></button>
+        </article>
+      </section>
 
-    
+      <section id="contact-info">
+        <article>
+          <h2>Kontakt sekcia</h2>
+          <label for="address">Adresa</label>
+          <textarea name="address" id="address" cols="1" rows="1" name="address" ></textarea>
+          <label for="phone">Telefón</label>
+          <textarea name="phone" id="phone" cols="1" rows="1" name="phone" ></textarea>
+          <label for="email">Email</label>
+          <textarea name="email" id="email" cols="1" rows="1" name="email" ></textarea>
+          <button class="button" id="contact-submit">Uložiť <div class="loader" id="contact-loader"></div></button>
+        </article>
+      </section>
+    </div>
 
+    <form class="form" id="service-form">
+      <span class="close">&#x2715</span>
+      <h2>Vytvorenie Služby</h2>
+      <p type="Názov služby:"><input placeholder="Meno služby" id="name"></input></p>
+      <p type="Popis služby:"><textarea name="popis" id="detail" rows="4" cols="50"></textarea></p>
+      <p type="Cena služby:"><input type="text" name="" id="price" placeholder="500€" ></p>
+      <button class="button" type="submit" id="create">Rezervovať <div class="loader" id="s-loader"></div></button></button>
+    </form>
+
+    <script>
+      const form = document.getElementById("service-form");
+      const close = document.querySelector(".close");
+      const content = document.getElementById("page");
+      close.addEventListener("click", () => {
+        form.style.display = "none";
+        content.style.opacity = "1";
+      });
+    </script>
 </body>
-<script type="module" src="./firestore.js"></script>
+<script type="module" src="./admin-data.js"></script>
 </html>

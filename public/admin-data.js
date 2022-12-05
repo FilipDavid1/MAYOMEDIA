@@ -21,7 +21,10 @@ const serviceName = document.getElementById('service-name');
 const serviceText = document.getElementById('service-text');
 const servicePrice = document.getElementById('service-price');
 const serviceSubmit = document.getElementById('service-submit');
+const serviceDelete = document.getElementById('service-delete');
+const serviceAdd = document.getElementById('service-add');
 const serviceLoader = document.getElementById('service-loader');
+const serviceForm = document.getElementById('service-form');
 
 //html contact elements
 let contactId;
@@ -121,6 +124,55 @@ serviceSubmit.addEventListener('click', async (e) => {
         price: servicePrice.value
         }).then(() => {
             serviceLoader.style.display = "none";
+        });
+});
+
+//delete service
+serviceDelete.addEventListener('click', async (e) => {
+    e.preventDefault();
+    serviceLoader.style.display = "block";
+    var ref = doc(db, "services", serviceId);
+    await deleteDoc(ref).then(() => {
+        serviceLoader.style.display = "none";
+        window.location.reload();
+    });
+});
+
+//add service
+const content = document.getElementById('page');
+serviceAdd.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    
+    
+    if(serviceForm.style.display === 'none' || serviceForm.style.display === ''){
+        //show form with animation
+
+        serviceForm.style.display = 'block';
+        content.style.opacity = 0.5;
+    }
+    else{
+        serviceForm.style.display = 'none';
+        content.style.opacity = 1;
+    }
+});
+
+serviceForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const sLoader = document.getElementById('s-loader');
+    const name = document.getElementById('name');
+    const text = document.getElementById('detail');
+    const price = document.getElementById('price');
+    sLoader.style.display = "block";
+    await addDoc(serviceRef, {
+        name: name.value,
+        text: text.value,
+        price: price.value
+        }).then(() => {
+            sLoader.style.display = "none";
+            serviceForm.style.display = 'none';
+            content.style.opacity = 1;
         });
 });
 
