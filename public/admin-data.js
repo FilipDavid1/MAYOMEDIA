@@ -64,6 +64,9 @@ welcomeSubmit.addEventListener('click', async (e) => {
         text: welcomeText.value
         }).then(() => {
             welcomeLoader.style.display = "none";
+        }).catch((error) => {
+            welcomeLoader.style.display = "none";
+            alert('Please login to update data');
         });
 });
 
@@ -87,6 +90,9 @@ aboutSubmit.addEventListener('click', async (e) => {
         text: aboutText.value
         }).then(() => {
             aboutLoader.style.display = "none";
+        }).catch((error) => {
+            aboutLoader.style.display = "none";
+            alert('Please login to update data');
         });
 });
 
@@ -124,6 +130,9 @@ serviceSubmit.addEventListener('click', async (e) => {
         price: servicePrice.value
         }).then(() => {
             serviceLoader.style.display = "none";
+        }).catch((error) => {
+            serviceLoader.style.display = "none";
+            alert('Please login to update data');
         });
 });
 
@@ -135,6 +144,9 @@ serviceDelete.addEventListener('click', async (e) => {
     await deleteDoc(ref).then(() => {
         serviceLoader.style.display = "none";
         window.location.reload();
+    }).catch((error) => {
+        serviceLoader.style.display = "none";
+        alert('Please login to update data');
     });
 });
 
@@ -173,6 +185,9 @@ serviceForm.addEventListener('submit', async (e) => {
             sLoader.style.display = "none";
             serviceForm.style.display = 'none';
             content.style.opacity = 1;
+        }).catch((error) => {
+            sLoader.style.display = "none";
+            alert('Please login to update data');
         });
 });
 
@@ -199,5 +214,8 @@ contactSubmit.addEventListener('click', async (e) => {
         email: email.value
         }).then(() => {
             contactLoader.style.display = "none";
+        }).catch((error) => {
+            contactLoader.style.display = "none";
+            alert('Please login to update data');
         });
 });
