@@ -1403,6 +1403,10 @@ h2 {
   flex: 1;
 }  
 
+.flex-child button {
+  margin-bottom: 1em;
+}
+
 .flex-child img {
   width: 100%;
   height: 100%;
@@ -1420,7 +1424,7 @@ h2 {
 .flex-child h1 {
   font-size: 4em;
   font-weight: 600;
-  margin: 0.5em;
+  margin: 0.1em !important;
   color: #232323;
   text-decoration: underline;
   text-decoration-color: #AA1A45;
@@ -1431,9 +1435,7 @@ h2 {
   font-weight: 400;
   margin: 0.5em;
   color: #252525;
-  max-width: 50%;
   text-align: start;
-  margin-bottom: 3em; 
 }
 
 .flex-child h2 {
@@ -1441,6 +1443,7 @@ h2 {
   color: #AA1A45;
   width: 50%;
   text-align: start !important;
+  margin: 0.1em !important;
 }
   select {
   /* Reset Select */
@@ -1465,6 +1468,7 @@ select::-ms-expand {
 }
 /* Custom Select wrapper */
  .select {
+  padding-bottom: 4em;
   position: relative;
   display: flex;
   width: 20em;
@@ -1538,3 +1542,15 @@ select::-ms-expand {
   text-decoration-color: #AA1A45;
 }
 
+.page-data section label {
+  text-decoration: underline;
+  text-decoration-color: #AA1A45;
+}
+
+.page-data section p {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #252525;
+  max-width: 50%;
+  text-align: start;
+}

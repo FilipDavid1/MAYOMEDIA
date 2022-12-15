@@ -11,7 +11,7 @@ const colRef = collection(db, 'services');
 const eventRef = collection(db, 'events');
 //real time collection data
 
-let services = [];
+let services = []; 
 onSnapshot(colRef, (querySnapshot) => {
     
     let select = document.getElementById('select');

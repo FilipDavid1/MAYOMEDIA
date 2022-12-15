@@ -1,5 +1,11 @@
 import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from './firebase.js';
 
+//html aside elements
+const page = document.getElementById('page');
+const contentPage = document.getElementById('content-page');
+const reservations = document.getElementById('reservations');
+const messagesPage = document.getElementById('messages');
+
 //html welcome elements
 let welcomeId;
 const welcomeName = document.getElementById('welcome-name');
@@ -39,6 +45,40 @@ const welcomeRef = collection(db, 'welcome-data' );
 const aboutRef = collection(db, 'about-data');
 const serviceRef = collection(db, 'services');
 const contactRef = collection(db, 'contact-info');
+const rezervationRef = collection(db, 'events');
+const messagesRef = collection(db, 'contact');
+
+//html rezervation elements
+let rezervationId;
+const rezervationTable = document.getElementById('rezervation-table');
+
+//html messages elements
+let messageId;
+const messageTable = document.getElementById('messages-table');
+
+//switch pages
+page.addEventListener('click', (e) => {
+    document.getElementById('page-elements').style.display = "block";
+    document.getElementById('rezervation-table').style.display = "none";
+});
+
+// contentPage.addEventListener('click', (e) => {
+//     page.style.display = "none";
+//     contentPage.style.display = "block";
+//     reservations.style.display = "none";
+//     messages.style.display = "none";
+// });
+
+reservations.addEventListener('click', (e) => {
+   document.getElementById('rezervation-table').style.display = "block";
+   document.getElementById('page-elements').style.display = "none";
+});
+
+messagesPage.addEventListener('click', (e) => {
+    document.getElementById('messages-table').style.display = "block";
+    document.getElementById('page-elements').style.display = "none";
+    document.getElementById('rezervation-table').style.display = "none";
+});
 
 //welcome data
 onSnapshot(welcomeRef, () => {
@@ -242,4 +282,98 @@ contactSubmit.addEventListener('click', async (e) => {
                 button: "OK",
             })
         });
+});
+
+
+//rezervations data
+let rezervations = [];
+let rezervationIds = [];
+onSnapshot(rezervationRef, (querySnapshot) => {
+    querySnapshot.docs.forEach((doc) => {
+        rezervations.push({ ...doc.data() });
+        rezervationIds.push(doc.id);
+    });
+    rezervationTable.innerHTML = rezervations.map( rezervation => `
+        <section class="rezervation">
+            <article class="rezervation__info">
+                <h2 class="rezervation__name">${rezervation.service}</h2>
+                <label class="rezervation__label">Meno:"</label>
+                <p class="rezervation__phone">${rezervation.name}</p>
+                <label class="rezervation__label">Email:</label>
+                <p class="rezervation__email">${rezervation.email}</p>
+                <label class="rezervation__label">Telefón:</label>
+                <p class="rezervation__date">${rezervation.phone}</p>
+                <label class="rezervation__label">Správa:</label>
+                <p class="rezervation__time">${rezervation.message}</p>
+                <label class="rezervation__label">Dátum:</label>
+                <p class="rezervation__service">${rezervation.date}</p>
+            </article>
+            <article class="rezervation__buttons">
+                <button class="rezervation__button" id="rezervation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Potvrdiť</button>
+                <button class="rezervation__button" id="reservation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
+            </article>
+        </section>
+    `).join('');
+});
+
+//delete rezervation
+rezervationTable.addEventListener('click', async (e) => {
+    if(e.target.classList.contains('rezervation__button')){
+        let id = e.target.id.split('--')[1];
+        var ref = doc(db, "events", id);
+        await deleteDoc(ref).then(() => {
+            //reload data
+            window.location.reload();
+        }).catch((error) => {
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
+        });
+    }
+});
+
+//message data
+let messages = [];
+let messageIds = [];
+onSnapshot(messagesRef, (querySnapshot) => {
+    querySnapshot.docs.forEach((doc) => {
+        messages.push({ ...doc.data() });
+        messageIds.push(doc.id);
+    });
+    messageTable.innerHTML = messages.map( message => `
+        <section class="message">
+            <article class="message__info">
+                <h2 class="message__name">${message.name}</h2>
+                <label class="message__label">Email:</label>
+                <p class="message__email">${message.email}</p>
+                <label class="message__label">Telefón:</label>
+                <p class="message__phone">${message.phone}</p>
+                <label class="message__label">Správa:</label>
+                <p class="message__message">${message.message}</p>
+            </article>
+            <article class="message__buttons">
+                <button class="message__button" id="message__button--${messageIds[messages.indexOf(message)]}">Zmazať</button>
+            </article>
+        </section>
+    `).join('');
+});
+
+//delete message
+messageTable.addEventListener('click', async (e) => {
+    if(e.target.classList.contains('message__button')){
+        let id = e.target.id.split('--')[1];
+        var ref = doc(db, "contact", id);
+        await deleteDoc(ref).then(() => {
+            //reload data
+            window.location.reload();
+        }).catch((error) => {
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
+        });
+    }
 });
