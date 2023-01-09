@@ -941,7 +941,9 @@ h2 {
 .welcome {
   display: flex;
   width: 100%;
-  height: auto;
+  height: 61vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcome .images {
@@ -951,15 +953,19 @@ h2 {
 .welcome .text {
   display: flex;
   flex-direction: column;
-  background-color: #252525;
+  /*create glass filter on background color*/
+  background-color: rgba(255, 255, 255, 0.252);
+  padding: 1em;
   color: white;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 
 .welcome .text h1 {
   font-size: 5em;
   margin-bottom: 0.2em;
+  color: #252525;
 }
 
 .welcome .text h2 {
@@ -1441,7 +1447,6 @@ h2 {
 .flex-child h2 {
   font-size: 3em;
   color: #AA1A45;
-  width: 50%;
   text-align: start !important;
   margin: 0.1em !important;
 }
@@ -1553,4 +1558,19 @@ select::-ms-expand {
   color: #252525;
   max-width: 50%;
   text-align: start;
+}
+
+
+.welcome video {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-radius: 10px;
+  -webkit-filter: blur(15px);
+}
+
+.back-video {
+  position: absolute;
+  z-index: -1;
+
 }
