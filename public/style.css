@@ -1449,6 +1449,7 @@ h2 {
   color: #AA1A45;
   text-align: start !important;
   margin: 0.1em !important;
+  /* text-decoration: underline; */
 }
   select {
   /* Reset Select */
