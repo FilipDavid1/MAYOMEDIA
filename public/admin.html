@@ -12,6 +12,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.tiny.cloud/1/0v7zftkfzknl2y86q95632yntxev9r73ttowluj6b7d2hjoq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#about-text',
+        menubar: false,
+        plugins: "link image media",
+        toolbar: 'undo redo | blocks | bold italic | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | media',
+        // toolbar: 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image | media | table',
+        audio_template_callback: (data) =>
+        '<audio controls>\n' +
+        `<source src="${data.source}"${data.sourcemime ? ` type="${data.sourcemime}"` : ''} />\n` +
+        (data.altsource ? `<source src="${data.altsource}"${data.altsourcemime ? ` type="${data.altsourcemime}"` : ''} />\n` : '') +
+        '</audio>'
+      });
+    </script>
 </head>
 <body>
     <div class="nav">
@@ -69,7 +84,7 @@
             <h2>O nás sekcia</h2>
             <label for="about-text">O mne text</label>
             <textarea id="about-text" name="about-text" rows="4" cols="50"></textarea>
-            <button class="button" id="about-submit">Uložiť <div class="loader" id="about-loader"></div></button>
+            <button class="button" id="about-submit" style="margin-top: 0.5em;">Uložiť <div class="loader" id="about-loader"></div></button>
           </article>
         </section>
   
@@ -86,7 +101,7 @@
             <textarea id="service-text" name="service-text" rows="4" cols="50"></textarea>
             <label for="service-price">cena</label>
             <textarea name="service-price" id="service-price" cols="1" rows="1" name="service-price" ></textarea>
-            <label for="service-image">Obrázok</label>
+            <!-- <label for="service-image">Obrázok</label>
             <input type="file" id="fileInp" name="service-image" accept="image/*">
             <label for="fileInp">+</label>
             <span class="fileText"></span>
@@ -94,7 +109,7 @@
             <div class="uploadPercentage">0%</div>
             <div class="imageUploaded">
               <img src="" class="uploadImage" alt="">
-            </div>
+            </div> -->
             <button class="button" id="service-submit">Uložiť <div class="loader" id="service-loader"></div></button>
             <button class="button" id="service-delete">Vymazať <div class="loader" id="service-loader"></div></button>
             <button class="button" id="service-add">Pridať <div class="loader" id="service-loader"></div></button>
@@ -138,6 +153,7 @@
         form.style.display = "none";
         content.style.opacity = "1";
       });
+
 
 //a5aea5b3-aa9f-48f5-b35a-1e5244290f29
      
