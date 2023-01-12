@@ -947,7 +947,7 @@ h2 {
   display: flex;
   width: 100%;
   height: auto;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -1573,6 +1573,10 @@ select::-ms-expand {
   object-fit: cover;
   border-radius: 10px;
   -webkit-filter: blur(15px);
+}
+
+.welcome .images {
+  width: 45%;
 }
 
 .back-video {
