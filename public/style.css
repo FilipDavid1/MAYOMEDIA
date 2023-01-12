@@ -285,6 +285,11 @@ body {
   font-size: xx-large;
 }
 
+.welcome img {
+  width: 90%;
+  height: auto;
+}
+
 h2 {
   color: black;
 }
@@ -941,31 +946,31 @@ h2 {
 .welcome {
   display: flex;
   width: 100%;
-  height: 61vh;
+  height: auto;
   justify-content: center;
   align-items: center;
 }
 
-.welcome .images {
-  background-color: rgba(17, 17, 17, 0.826);
-}
-
 .welcome .text {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  /*create glass filter on background color*/
   background-color: rgba(255, 255, 255, 0.252);
   padding: 1em;
   color: white;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 10px; */
+
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcome .text h1 {
   font-size: 5em;
   margin-bottom: 0.2em;
-  color: #252525;
 }
 
 .welcome .text h2 {
@@ -1125,7 +1130,7 @@ h2 {
 .card-images {
   width: 100%;
   height: auto;
-
+  max-width: 300px;
 }
 
 .services-pc {

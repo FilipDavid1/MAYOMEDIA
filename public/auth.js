@@ -44,27 +44,11 @@ registerBtn.addEventListener("click", (e) => {
     document.getElementById('passwordLabel').style.visibility = "hidden";
     document.getElementById('repPasswordLabel').style.visibility = "hidden";
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      
-
-        set(ref(database, 'users/' + user.uid), {
-          admin: false,
-          email: email,
-          last_login: Date.now(),
-        }).then(() => {
-          // Data saved successfully!
-          document.getElementsByClassName("loader")[0].style.display = "none";
-          window.location.replace("./signIn.html");
-        })
-          .catch((error) => {
-            // The write failed...
-            document.getElementsByClassName("loader")[0].style.display = "none";
-            console.log(error);
-          });
-
-    })
+  .then(() => {
+    // Data saved successfully!
+    document.getElementsByClassName("loader")[0].style.display = "none";
+    window.location.replace("./signIn.html");
+  })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;

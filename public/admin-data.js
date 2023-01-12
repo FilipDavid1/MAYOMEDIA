@@ -1,4 +1,4 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from './firebase.js';
+import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc, updateDoc, app } from './firebase.js';
 
 //html aside elements
 const page = document.getElementById('page');
@@ -60,6 +60,7 @@ const messageTable = document.getElementById('messages-table');
 page.addEventListener('click', (e) => {
     document.getElementById('page-elements').style.display = "block";
     document.getElementById('rezervation-table').style.display = "none";
+    document.getElementById('messages-table').style.display = "none";
 });
 
 // contentPage.addEventListener('click', (e) => {
@@ -72,6 +73,7 @@ page.addEventListener('click', (e) => {
 reservations.addEventListener('click', (e) => {
    document.getElementById('rezervation-table').style.display = "block";
    document.getElementById('page-elements').style.display = "none";
+   document.getElementById('messages-table').style.display = "none"; 
 });
 
 messagesPage.addEventListener('click', (e) => {
@@ -376,4 +378,41 @@ messageTable.addEventListener('click', async (e) => {
             })
         });
     }
+});
+
+//upload service image
+
+var fileText = document.getElementById('fileText');
+var uploadPercentage = document.getElementById('uploadPercentage');
+var percentVal;
+var fileItem;
+var fileName;
+function getFile(e){
+    fileItem = e.target.files[0];
+    fileName = fileItem.name;
+    fileText.innerHTML = fileName;
+}
+
+const butt = document.getElementById('upload');
+
+butt.addEventListener('click', () => {
+    var storageRef = storage.ref('services/' + fileName);
+    let uploadTask = storageRef.put(fileItem);
+
+    uploadTask.on('state_changed', (snapshot) => {
+        console.log(snapshot);
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        percentVal = progress + '%';
+        uploadPercentage.innerHTML = percentVal;
+    }, (error) => {
+        console.log(error);
+    }, () => {
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            uploadPercentage.innerHTML = 'Upload complete';
+            uploadPercentage.style.color = 'green';
+            uploadImageToDatabase(downloadURL);
+        });
+    }
+    );
 });

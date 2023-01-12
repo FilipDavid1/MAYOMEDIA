@@ -83,7 +83,7 @@ onSnapshot(serviceRef, (querySnapshot) => {
             <div class="card-text">
                 <h3>${service.name}</h3>
             <div class="flex">
-                <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em;">
+                <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em; max-width="300px"">
                 <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
             </div>
             </div>

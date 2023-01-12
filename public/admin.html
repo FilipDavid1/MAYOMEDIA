@@ -51,7 +51,6 @@
 
     <div class="page-data">
       <div class="page-elements" id="page-elements" style="display: block;">
-        <button class="button" id="mail">send</button>
         <section id="welcome-data">
           <article>
             <h2>Welcome sekcia</h2>
@@ -87,6 +86,15 @@
             <textarea id="service-text" name="service-text" rows="4" cols="50"></textarea>
             <label for="service-price">cena</label>
             <textarea name="service-price" id="service-price" cols="1" rows="1" name="service-price" ></textarea>
+            <label for="service-image">Obrázok</label>
+            <input type="file" id="fileInp" name="service-image" accept="image/*">
+            <label for="fileInp">+</label>
+            <span class="fileText"></span>
+            <button class="button" id="upload">Nahrat fotku sluzby</button>
+            <div class="uploadPercentage">0%</div>
+            <div class="imageUploaded">
+              <img src="" class="uploadImage" alt="">
+            </div>
             <button class="button" id="service-submit">Uložiť <div class="loader" id="service-loader"></div></button>
             <button class="button" id="service-delete">Vymazať <div class="loader" id="service-loader"></div></button>
             <button class="button" id="service-add">Pridať <div class="loader" id="service-loader"></div></button>
@@ -132,10 +140,7 @@
       });
 
 //a5aea5b3-aa9f-48f5-b35a-1e5244290f29
-      const mail = document.getElementById("mail");
-      mail.addEventListener("click", () => {
-        
-      });
+     
      
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
