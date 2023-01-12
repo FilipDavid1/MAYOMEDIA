@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <div class="nav">
@@ -33,6 +34,7 @@
       <a href="./content.html">Tvorba</a>
       <a href="./contact.html">Kontakt</a>
       <a href="signIn.html">Prihlásiť sa</a>
+      <a href="./admin.html">Admin</a>
     </div>
   </div>
 
@@ -62,7 +64,7 @@
         </div>
       </div>
 
-      <div class="service-carousel" style="background-color: #252525;">
+      <div class="service-carousel">
         <h2>Služby</h2>
         <div class="center" >
           <div class="services-pc" id="card-container">
@@ -104,6 +106,22 @@
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Vymazat z databazy</button>
       </form> -->
+
+      
+
+      <div class="video-carousel" id="video-carousel">
+        <h2>Tvorba</h2>
+        
+        <button class="nav-button" id="prev">&#8249;</button>
+        <button class="nav-button" id="next">&#8250;</button>
+      </div>  
+
+      <div class="photos-section">
+        <h2 class="photos-heading">Fotky zo svadieb</h2>
+        <div class="row" id="grid">
+          <div class="column"></div>
+        </div>
+      </div>
 
       <script type="module" src="./index-data.js"></script>
 </body>
