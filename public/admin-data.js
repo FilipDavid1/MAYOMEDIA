@@ -14,6 +14,12 @@ const welcomeText = document.getElementById('welcome-text');
 const welcomeSubmit = document.getElementById('welcome-submit');
 const welcomeLoader = document.getElementById('welcome-loader');
 
+//html content elements
+let contentId;
+const contentImg = document.getElementById('content-img');
+const photoContainer = document.getElementById('grid');
+const contentVideo = document.getElementById('content-video');
+
 //html about elements
 let aboutId;
 const aboutText = document.getElementById('about-text');
@@ -43,6 +49,8 @@ const contactLoader = document.getElementById('contact-loader');
 //collection reference
 const welcomeRef = collection(db, 'welcome-data' );
 const aboutRef = collection(db, 'about-data');
+const videosRef = collection(db, 'videos');
+const photosRef = collection(db, 'photos');
 const serviceRef = collection(db, 'services');
 const contactRef = collection(db, 'contact-info');
 const rezervationRef = collection(db, 'events');
@@ -61,25 +69,28 @@ page.addEventListener('click', (e) => {
     document.getElementById('page-elements').style.display = "block";
     document.getElementById('rezervation-table').style.display = "none";
     document.getElementById('messages-table').style.display = "none";
+    document.getElementById('content').style.display = "none";
 });
 
-// contentPage.addEventListener('click', (e) => {
-//     page.style.display = "none";
-//     contentPage.style.display = "block";
-//     reservations.style.display = "none";
-//     messages.style.display = "none";
-// });
+contentPage.addEventListener('click', (e) => {
+    document.getElementById('content').style.display = "block";
+    document.getElementById('page-elements').style.display = "none";
+    document.getElementById('rezervation-table').style.display = "none";
+    document.getElementById('messages-table').style.display = "none";
+});
 
 reservations.addEventListener('click', (e) => {
    document.getElementById('rezervation-table').style.display = "block";
    document.getElementById('page-elements').style.display = "none";
    document.getElementById('messages-table').style.display = "none"; 
+   document.getElementById('content').style.display = "none";
 });
 
 messagesPage.addEventListener('click', (e) => {
     document.getElementById('messages-table').style.display = "block";
     document.getElementById('page-elements').style.display = "none";
     document.getElementById('rezervation-table').style.display = "none";
+    document.getElementById('content').style.display = "none";
 });
 
 //welcome data
@@ -286,6 +297,45 @@ contactSubmit.addEventListener('click', async (e) => {
             })
         });
 });
+
+
+//gallery data
+let gallery = [];
+let galleryIds = [];
+onSnapshot(photosRef, (querySnapshot) => {
+    querySnapshot.docs.forEach((doc) => {
+        gallery.push({ ...doc.data() });
+        galleryIds.push(doc.id);
+    });
+    photoContainer.innerHTML = gallery.map( image => `
+    <div class="column">
+        <img src="${image.img}" alt="photo" class="photo" style="">
+        <button class="button" style="width: 78px; height:auto;" id="delete__button--${galleryIds[gallery.indexOf(image)]}">Vymazať</button>
+    </div>
+    `).join('');
+});
+
+//delete photo
+photoContainer.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(e.target.id.includes('delete__button--')){
+        const id = e.target.id.split('--')[1];
+        var ref = doc(db, "photos", id);
+        console.log(id);
+        await deleteDoc(ref).then(() => {
+            window.location.reload();
+            console.log('deleted' + id);
+        }).catch((error) => {
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
+        });
+    }
+});
+
+
 
 
 //rezervations data

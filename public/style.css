@@ -984,6 +984,18 @@ h2 {
   margin: 0 1rem;
 }
 
+#main-video {
+  width: 100%;
+  height: auto;
+  max-height: 50%;
+}
+#continuing-videos {
+  width: 100%;
+  height: auto;
+  max-height: 50%;
+}
+
+
 /*image grid*/
 .row {
   display: -ms-flexbox; /* IE10 */
