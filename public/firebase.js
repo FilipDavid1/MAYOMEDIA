@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
+import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-auth.js";
 import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
 import { getFirestore, doc, addDoc, collection, getDocs, onSnapshot, deleteDoc, updateDoc} from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-firestore.js';
@@ -16,14 +16,17 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const firebaseApp = getApp();
 export const auth = getAuth();
 export const database = getDatabase();
+
 
 // initialize firestore
 export const db = getFirestore();
 
-
+//initialize storage
+// export const storage = getStorage(app);
 
 
 export { set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, doc, addDoc, collection, getDocs, onSnapshot, deleteDoc, updateDoc };
-export { sRef, uploadBytesResumable, getDownloadURL, getStorage };
+export { ref as sRef, uploadBytesResumable, getDownloadURL, getStorage };
