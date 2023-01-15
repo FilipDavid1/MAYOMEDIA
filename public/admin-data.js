@@ -399,17 +399,17 @@ async function uploadProcess(){
     }, () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log('File available at', downloadURL);
-            // addDoc(photosRef, {
-            //     img: downloadURL
-            // }).then(() => {
-            //     window.location.reload();
-            // }).catch((error) => {
-            //     swal({
-            //         title: "Prosím prihláste sa",
-            //         icon: "warning",
-            //         button: "OK",
-            //     })
-            // });
+            addDoc(photosRef, {
+                img: downloadURL
+            }).then(() => {
+                window.location.reload();
+            }).catch((error) => {
+                swal({
+                    title: "Prosím prihláste sa",
+                    icon: "warning",
+                    button: "OK",
+                })
+            });
         });
     });
 }
