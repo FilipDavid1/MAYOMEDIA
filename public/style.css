@@ -995,6 +995,17 @@ h2 {
   max-height: 50%;
 }
 
+.column .fullscreen {
+  object-fit: contain;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80% !important;
+  height: auto;
+  z-index: 1;
+  margin: auto;
+}
 
 /*image grid*/
 .row {

@@ -111,17 +111,32 @@ onSnapshot(serviceRef, (querySnapshot) => {
     });
 
 //photos data
-let photos = [];
-onSnapshot(photosRef, (querySnapshot) => {
-    let photoContainer = document.getElementById('grid');
-    querySnapshot.docs.forEach((doc) =>{
-        photos.push({ ...doc.data() })
-    })
-    photoContainer.innerHTML = photos.map(photo => `
-    <div class="column">
-        <img src="${photo.img}" alt="photo" class="photo">
-    </div>`).join('');
-})
+document.addEventListener("DOMContentLoaded", function(){
+    let photos = [];
+    const photoContainer = document.getElementById('grid');
+    
+    onSnapshot(photosRef, (querySnapshot) => {
+        querySnapshot.docs.forEach((doc) =>{
+            photos.push({ ...doc.data() })
+        })
+        photoContainer.innerHTML = photos.map(photo => `
+        <div class="column">
+            <img src="${photo.img}" alt="photo" class="photo">
+        </div>`).join('');
+
+        // Add click event listener to each photo element
+        const photoElements = document.querySelectorAll('.column');
+        photoElements.forEach((photo) => {
+            photo.addEventListener('click', (event) => {
+                event.target.classList.toggle('fullscreen');
+                event.stopPropagation();
+            });
+        });
+    });
+});
+
+
+
 
 //generate vimeo iframe
 function generateIframe(vimeoLink) {
