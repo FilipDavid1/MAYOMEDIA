@@ -131,9 +131,17 @@
       </div>
 
       <section class="content" id="content" style="display: none;">
+        <form>
+          <input type="file" id="imageInput" accept="image/*">
+          <label for="imageInput" id="photo-name"></label>
+          <label for="" id="photo-ext"></label>
+          <img src="" id="img-preview" alt="" style="width: 40%; height: auto;"> 
+          <label id="imgProgress"></label> 
+          <button type="button" id="upload-photo">Upload</button>
+        </form>        
         <div class="photos-section">
           <h2 class="photos-heading">Fotky zo svadieb</h2>
-          <div class="row" id="grid" style="">
+          <div class="row" id="grid" ">
             <div class="column"></div>
           </div>
         </div>

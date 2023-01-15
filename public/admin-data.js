@@ -1,4 +1,5 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc, updateDoc, app } from './firebase.js';
+import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc, updateDoc,  } from './firebase.js';
+import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-storage.js';
 
 //html aside elements
 const page = document.getElementById('page');
@@ -335,8 +336,88 @@ photoContainer.addEventListener('click', async (e) => {
     }
 });
 
+//add photo to firebase storage and url to firestore
+var imgFiles = [];
+var reader = new FileReader();
+const photoInput = document.getElementById('imageInput');
+const imgPreview = document.getElementById('img-preview');
+const imgProgress = document.getElementById('imgProgress');
+const photoSubmit = document.getElementById('upload-photo');
+const photoName = document.getElementById('photo-name');
+const photoExt = document.getElementById('photo-ext');
 
+photoInput.onchange = function(e){
+    imgFiles = e.target.files;
+    reader.readAsDataURL(imgFiles[0]);
 
+    var name = getName(imgFiles[0]);
+    photoName.value = name;
+    console.log(name);
+
+    var ext = getFileExt(imgFiles[0]);
+    photoExt.value = ext;
+    console.log(ext);
+}
+
+reader.onload = function(){
+    imgPreview.src = reader.result;
+}
+
+function getFileExt(file){
+    var temp = file.name.split('.');
+    var ext = temp[temp.length - 1];
+
+    return "." + ext;
+}
+
+function getName(file){
+    var temp = file.name.split('.');
+    var fname = temp.slice(0, temp.length - 1).join('.');
+
+    return fname;
+}
+
+async function uploadProcess(){
+    var imagesToUpload = imgFiles[0];
+
+    var img = photoName.value + photoExt.value;
+
+    const metaData = {
+        contentType: imagesToUpload.type
+    }
+
+    const storage = getStorage();
+    const storageRef = sRef(storage, 'images/' + img);
+
+    const uploadTask = uploadBytesResumable(storageRef, imagesToUpload, metaData);
+
+    uploadTask.on('state_changed', (snapshot) => {
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        imgProgress.value = 'Upload ' + progress + '%';
+    }, (error) => {
+        console.log(error);
+    }, () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            // addDoc(photosRef, {
+            //     img: downloadURL
+            // }).then(() => {
+            //     window.location.reload();
+            // }).catch((error) => {
+            //     swal({
+            //         title: "Prosím prihláste sa",
+            //         icon: "warning",
+            //         button: "OK",
+            //     })
+            // });
+        });
+    });
+}
+
+photoSubmit.addEventListener('click', async (e) => {
+    e.preventDefault();
+    uploadProcess();
+});
 
 //rezervations data
 let rezervations = [];
