@@ -290,6 +290,12 @@ body {
   height: auto;
 }
 
+#welcome-img{
+  width: 40%;
+  height: auto;
+  background-color: #252525;
+}
+
 h2 {
   color: black;
 }

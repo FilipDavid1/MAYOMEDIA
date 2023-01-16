@@ -13,6 +13,7 @@ let welcomeData = [];
 onSnapshot(welcomeRef, (querySnapshot) => {
     let nameW = document.getElementById('name-welcome');  
     let servicesW = document.getElementById('service-w');
+    let welcomeImg = document.getElementById('welcome-img');
     // let textW = document.getElementById('text-welcome');
 
     querySnapshot.docs.forEach((doc) =>{
@@ -20,6 +21,7 @@ onSnapshot(welcomeRef, (querySnapshot) => {
     })
     nameW.innerHTML = welcomeData[0].name;
     servicesW.innerHTML = welcomeData[0].service;
+    welcomeImg.src = welcomeData[0].img;
     // textW.innerHTML = welcomeData[0].text;
 })
 
@@ -40,11 +42,13 @@ auth.onAuthStateChanged(user => {
       // https://firebase.google.com/docs/reference/js/firebase.User
       onSnapshot(aboutRef, () =>{
         let textA = document.getElementById('text-about');
+        let aboutImg = document.getElementById('about-img-img');
         console.log("User is signed in" + user.uid);
 
         getDocs(aboutRef).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 textA.innerHTML = doc.data().text;
+                aboutImg.src = doc.data().img;
             });
         });
     })
