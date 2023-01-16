@@ -75,6 +75,8 @@
             <textarea name="" id="welcome-service" cols="1" rows="1" name="welcome-service" ></textarea>
             <label for="welcome-text">Text na úvodnej stránke</label>
             <textarea id="welcome-text" name="welcome-text" rows="4" cols="50"></textarea>
+            <img src="" id="welcome-img" alt="">
+            <input type="file" id="welcome-img-input" name="welcome-img-input" accept="image/*">
             <button class="button" id="welcome-submit">Uložiť <div class="loader" id="welcome-loader"></div></button>
           </article>
         </section>
@@ -84,6 +86,8 @@
             <h2>O nás sekcia</h2>
             <label for="about-text">O mne text</label>
             <textarea id="about-text" name="about-text" rows="4" cols="50"></textarea>
+            <img src="" id="about-img" alt="" style="width: 40%;">
+            <input type="file" id="about-img-input" name="about-img-input" accept="image/*">
             <button class="button" id="about-submit" style="margin-top: 0.5em;">Uložiť <div class="loader" id="about-loader"></div></button>
           </article>
         </section>
@@ -101,15 +105,7 @@
             <textarea id="service-text" name="service-text" rows="4" cols="50"></textarea>
             <label for="service-price">cena</label>
             <textarea name="service-price" id="service-price" cols="1" rows="1" name="service-price" ></textarea>
-            <!-- <label for="service-image">Obrázok</label>
-            <input type="file" id="fileInp" name="service-image" accept="image/*">
-            <label for="fileInp">+</label>
-            <span class="fileText"></span>
-            <button class="button" id="upload">Nahrat fotku sluzby</button>
-            <div class="uploadPercentage">0%</div>
-            <div class="imageUploaded">
-              <img src="" class="uploadImage" alt="">
-            </div> -->
+            <img src="" id="service-img" alt="" style="width: 40%;"><br>
             <button class="button" id="service-submit">Uložiť <div class="loader" id="service-loader"></div></button>
             <button class="button" id="service-delete">Vymazať <div class="loader" id="service-loader"></div></button>
             <button class="button" id="service-add">Pridať <div class="loader" id="service-loader"></div></button>
@@ -132,7 +128,7 @@
 
       <section class="content" id="content" style="display: none;">
         <form>
-          <input type="file" id="imageInput" accept="image/*">
+          <input type="file" id="imageInput" accept="image/*" multiple>
           <label for="imageInput" id="photo-name"></label>
           <label for="" id="photo-ext"></label>
           <img src="" id="img-preview" alt="" style="width: 40%; height: auto;"> 
@@ -154,6 +150,7 @@
         <p type="Názov služby:"><input placeholder="Meno služby" id="name"></input></p>
         <p type="Popis služby:"><textarea name="popis" id="detail" rows="4" cols="50"></textarea></p>
         <p type="Cena služby:"><input type="text" name="" id="price" placeholder="500€" ></p>
+        <input type="file" id="service-form-input" name="img-input" accept="image/*">
         <button class="button" type="submit" id="create">Rezervovať <div class="loader" id="s-loader"></div></button></button>
       </form>
   
