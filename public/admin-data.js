@@ -122,11 +122,7 @@ function handleWelcomeUpload(uploadTask, data, docMethod, loader, ref) {
                 })
                 break;
             case 'running':
-                swal({
-                    title: "Prebieha nahrávanie",
-                    icon: "info",
-                    button: "OK",
-                })
+                console.log('Upload is running');
                 break;
         }
     }, function(error) {
