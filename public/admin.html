@@ -26,7 +26,21 @@
         (data.altsource ? `<source src="${data.altsource}"${data.altsourcemime ? ` type="${data.altsourcemime}"` : ''} />\n` : '') +
         '</audio>'
       });
+
+      //show photo preview after input change
+      function handlePhotoPreview(input, img) {
+            img.src = URL.createObjectURL(input.files[0]);
+      }
     </script>
+
+    <style>
+      input[type='file'] {
+        visibility: hidden;
+      }
+      .button {
+        text-decoration: none !important;
+      }
+    </style>
 </head>
 <body>
     <div class="nav">
@@ -75,8 +89,11 @@
             <textarea name="" id="welcome-service" cols="1" rows="1" name="welcome-service" ></textarea>
             <label for="welcome-text">Text na úvodnej stránke</label>
             <textarea id="welcome-text" name="welcome-text" rows="4" cols="50"></textarea>
-            <img src="" id="welcome-img" alt="">
-            <input type="file" id="welcome-img-input" name="welcome-img-input" accept="image/*">
+            <img src="" id="welcome-img" alt=""><br>
+            <img src="" alt="" id="new-img">
+            
+            <input type="file" id="welcome-img-input" name="welcome-img-input" accept="image/*" onchange="handlePhotoPreview(document.getElementById('welcome-img-input'), document.getElementById('welcome-img'))">
+            <label for="welcome-img-input" class="button" style="text-decoration: none;">Vybrať obrazok</label>
             <button class="button" id="welcome-submit">Uložiť <div class="loader" id="welcome-loader"></div></button>
           </article>
         </section>
@@ -86,8 +103,10 @@
             <h2>O nás sekcia</h2>
             <label for="about-text">O mne text</label>
             <textarea id="about-text" name="about-text" rows="4" cols="50"></textarea>
-            <img src="" id="about-img" alt="" style="width: 40%;">
-            <input type="file" id="about-img-input" name="about-img-input" accept="image/*">
+            <img src="" id="about-img" alt="" style="width: 40%;"><br>
+            
+            <input type="file" id="about-img-input" name="about-img-input" accept="image/*" onchange="handlePhotoPreview(document.getElementById('about-img-input'), document.getElementById('about-img'))">
+            <label for="about-img-input" class="button" style="text-decoration: none;">Vybrať obrazok</label>
             <button class="button" id="about-submit" style="margin-top: 0.5em;">Uložiť <div class="loader" id="about-loader"></div></button>
           </article>
         </section>
@@ -128,12 +147,12 @@
 
       <section class="content" id="content" style="display: none;">
         <form>
-          <input type="file" id="imageInput" accept="image/*" multiple>
-          <label for="imageInput" id="photo-name"></label>
-          <label for="" id="photo-ext"></label>
-          <img src="" id="img-preview" alt="" style="width: 40%; height: auto;"> 
-          <label id="imgProgress"></label> 
-          <button type="button" id="upload-photo">Upload</button>
+          <img src="" alt="" id="photos-img" style="width: 40%;"><br>
+          <label for="imageInput" class="button">Vybrať obrazok</label> 
+          <input type="file" id="imageInput" name="imageInput" accept="image/*" onchange="handlePhotoPreview(document.getElementById('imageInput'), document.getElementById('photos-img'))">
+
+          
+          <button type="button" id="upload-photo" class="button">Upload</button>
         </form>        
         <div class="photos-section">
           <h2 class="photos-heading">Fotky zo svadieb</h2>
@@ -150,7 +169,10 @@
         <p type="Názov služby:"><input placeholder="Meno služby" id="name"></input></p>
         <p type="Popis služby:"><textarea name="popis" id="detail" rows="4" cols="50"></textarea></p>
         <p type="Cena služby:"><input type="text" name="" id="price" placeholder="500€" ></p>
-        <input type="file" id="service-form-input" name="img-input" accept="image/*">
+        <img src="" id="service-form-img" alt="" style="width: 10%;"><br>
+    
+        <input type="file" id="service-form-input" name="service-form-input" accept="image/*" onchange="handlePhotoPreview(document.getElementById('service-form-input'), document.getElementById('service-form-img'))">
+        <label for="service-form-input" class="button" style="text-decoration: none;">Vybrať obrazok</label>
         <button class="button" type="submit" id="create">Rezervovať <div class="loader" id="s-loader"></div></button></button>
       </form>
   
