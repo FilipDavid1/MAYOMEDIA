@@ -18,6 +18,7 @@ const welcomeText = document.getElementById('welcome-text');
 const welcomeSubmit = document.getElementById('welcome-submit');
 const welcomeLoader = document.getElementById('welcome-loader');
 const welcomeImg = document.getElementById('welcome-img');
+const newImg = document.getElementById('new-img');
 const welcomeInput = document.getElementById('welcome-img-input');
 
 //html content elements
@@ -103,6 +104,53 @@ messagesPage.addEventListener('click', (e) => {
     document.getElementById('content').style.display = "none";
 });
 
+//upload photo
+function handleWelcomeUpload(uploadTask, data, docMethod, loader, ref) {
+    uploadTask.on('state_changed', function(snapshot){
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        swal({
+            title: progress + "%",
+            text: "Nahrávanie obrázku",
+            icon: "info",
+        })
+        switch (snapshot.state) {
+            case 'paused':
+                swal({
+                    title: "Nahrávanie pozastavené",
+                    icon: "warning",
+                    button: "OK",
+                })
+                break;
+            case 'running':
+                swal({
+                    title: "Prebieha nahrávanie",
+                    icon: "info",
+                    button: "OK",
+                })
+                break;
+        }
+    }, function(error) {
+        console.log(error);
+    }, function() {
+        getDownloadURL(uploadTask.snapshot.ref).then(function(downloadURL) {
+            console.log('File available at', downloadURL);
+            data.img= downloadURL;
+            docMethod(ref, data)
+                .then(() => {
+                    loader.style.display = "none";
+                }).catch((error) => {
+                    loader.style.display = "none";
+                    swal({
+                        title: "Prosím prihláste sa",
+                        icon: "warning",
+                        button: "OK",
+                    });
+                });
+        });
+    });
+}
+
+
 //welcome data
 onSnapshot(welcomeRef, () => {
     
@@ -118,49 +166,26 @@ onSnapshot(welcomeRef, () => {
 });
 
 
-
-
 //update welcome data with image
 welcomeSubmit.addEventListener('click', async (e) => {
     e.preventDefault();
     welcomeLoader.style.display = "block";
     var ref = doc(db, "welcome-data", welcomeId);
     var file = welcomeInput.files[0];
+    var imgName = file.name;
+    console.log(imgName);
     var storageRef = sRef(storage, 'welcome-img/' + file.name);
     var uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on('state_changed', function(snapshot){
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-        switch (snapshot.state) {
-            case 'paused':
-                console.log('Upload is paused');
-                break;
-            case 'running':
-                console.log('Upload is running');
-                break;
-        }
-    }, function(error) {
-        console.log(error);
-    }, function() {
-        getDownloadURL(uploadTask.snapshot.ref).then(function(downloadURL) {
-            console.log('File available at', downloadURL);
-            updateDoc(ref, {
-                name: welcomeName.value,
-                service: welcomeService.value,
-                text: welcomeText.value,
-                img: downloadURL
-            }).then(() => {
-                welcomeLoader.style.display = "none";
-            }).catch((error) => {
-                welcomeLoader.style.display = "none";
-                swal({
-                    title: "Prosím prihláste sa",
-                    icon: "warning",
-                    button: "OK",
-                });
-            });
-        });
-    });
+    
+   const data = {
+        name: welcomeName.value,
+        service: welcomeService.value,
+        text: welcomeText.value,
+        img: ""
+    }
+    handleWelcomeUpload( uploadTask, data, updateDoc, welcomeLoader, ref);
+
+
 });
 
 
@@ -183,37 +208,11 @@ aboutSubmit.addEventListener('click', async (e) => {
     var file = aboutInput.files[0];
     var storageRef = sRef(storage, 'about-img/' + file.name);
     var uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on('state_changed', function(snapshot){
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-        switch (snapshot.state) {
-            case 'paused':
-                console.log('Upload is paused');
-                break;
-            case 'running':
-                console.log('Upload is running');
-                break;
-        }
-    }, function(error) {
-        console.log(error);
-    }, function() {
-        getDownloadURL(uploadTask.snapshot.ref).then(function(downloadURL) {
-            console.log('File available at', downloadURL);
-            updateDoc(ref, {
-                text: tinymce.get('about-text').getContent(),
-                img: downloadURL
-            }).then(() => {
-                aboutLoader.style.display = "none";
-            }).catch((error) => {
-                aboutLoader.style.display = "none";
-                swal({
-                    title: "Prosím prihláste sa",
-                    icon: "warning",
-                    button: "OK",
-                });
-            });
-        });
-    });
+    const data = {
+        text: tinymce.get('about-text').getContent(),
+        img: ""
+    }
+    handleWelcomeUpload( uploadTask, data, updateDoc, aboutLoader, ref);
 });
 
 //services data
@@ -311,42 +310,13 @@ serviceForm.addEventListener('submit', async (e) => {
     var file = serviceFormInput.files[0];
     var storageRef = sRef(storage, 'service-img/' + file.name);
     var uploadTask = uploadBytesResumable(storageRef, file);
-    uploadTask.on('state_changed', function(snapshot){
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-        switch (snapshot.state) {
-            case 'paused':
-                console.log('Upload is paused');
-                break;
-            case 'running':
-                console.log('Upload is running');
-                break;
-        }
+    const data = {
+        name: name.value,
+        text: text.value,
+        price: price.value,
+        img: ""
     }
-    , function(error) {
-        console.log(error);
-    }
-    , function() {
-        getDownloadURL(uploadTask.snapshot.ref).then(function(downloadURL) {
-            console.log('File available at', downloadURL);
-            addDoc(serviceRef, {
-                name: name.value,
-                text: text.value,
-                price: price.value,
-                img: downloadURL
-            }).then(() => {
-                sLoader.style.display = "none";
-                window.location.reload();
-            }).catch((error) => {
-                sLoader.style.display = "none";
-                swal({
-                    title: "Prosím prihláste sa",
-                    icon: "warning",
-                    button: "OK",
-                });
-            });
-        });
-    });
+    handleWelcomeUpload( uploadTask, data, addDoc, sLoader, serviceRef);
 });
 
 //contact data
@@ -421,7 +391,6 @@ photoContainer.addEventListener('click', async (e) => {
 
 //add photo to firebase storage and url to firestore
 var imgFiles = [];
-var reader = new FileReader();
 const photoInput = document.getElementById('imageInput');
 const imgPreview = document.getElementById('img-preview');
 const imgProgress = document.getElementById('imgProgress');
@@ -429,77 +398,26 @@ const photoSubmit = document.getElementById('upload-photo');
 const photoName = document.getElementById('photo-name');
 const photoExt = document.getElementById('photo-ext');
 
-photoInput.onchange = function(e){
-    imgFiles = e.target.files;
-    reader.readAsDataURL(imgFiles);
 
-    var name = getName(imgFiles);
-    photoName.value = name;
-    console.log(name);
 
-    var ext = getFileExt(imgFiles);
-    photoExt.value = ext;
-    console.log(ext);
-}
-
-reader.onload = function(){
-    imgPreview.src = reader.result;
-}
-
-function getFileExt(file){
-    var temp = file.name.split('.');
-    var ext = temp[temp.length - 1];
-
-    return "." + ext;
-}
-
-function getName(file){
-    var temp = file.name.split('.');
-    var fname = temp.slice(0, temp.length - 1).join('.');
-
-    return fname;
-}
-
-async function uploadProcess(){
-    var imagesToUpload = imgFiles;
-
-    var img = photoName.value + photoExt.value;
-
-    const metaData = {
-        contentType: imagesToUpload.type
-    }
 
     
-    const storageRef = sRef(storage, 'images/' + img);
-
-    const uploadTask = uploadBytesResumable(storageRef, imagesToUpload, metaData);
-
-    uploadTask.on('state_changed', (snapshot) => {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        imgProgress.value = 'Upload ' + progress + '%';
-    }, (error) => {
-        console.log(error);
-    }, () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            addDoc(photosRef, {
-                img: downloadURL
-            }).then(() => {
-                window.location.reload();
-            }).catch((error) => {
-                swal({
-                    title: "Prosím prihláste sa",
-                    icon: "warning",
-                    button: "OK",
-                })
-            });
-        });
-    });
-}
+   
 
 photoSubmit.addEventListener('click', async (e) => {
     e.preventDefault();
-    uploadProcess();
+
+    const photoInput = document.getElementById('imageInput');
+    const imgPreview = document.getElementById('img-preview');
+
+    var file = photoInput.files[0];
+    var storageRef = sRef(storage, 'photos/' + file.name);
+    var uploadTask = uploadBytesResumable(storageRef, file);
+
+    const data = {
+        img: ""
+    }
+    handleWelcomeUpload( uploadTask, data, addDoc, imgProgress, photosRef);
 });
 
 //rezervations data
@@ -595,17 +513,3 @@ messageTable.addEventListener('click', async (e) => {
     }
 });
 
-//upload service image
-
-var fileText = document.getElementById('fileText');
-var uploadPercentage = document.getElementById('uploadPercentage');
-var percentVal;
-var fileItem;
-var fileName;
-function getFile(e){
-    fileItem = e.target.files[0];
-    fileName = fileItem.name;
-    fileText.innerHTML = fileName;
-}
-
-const butt = document.getElementById('upload');
