@@ -370,6 +370,7 @@ photoContainer.addEventListener('click', async (e) => {
     e.preventDefault();
     if(e.target.id.includes('delete__button--')){
         const id = e.target.id.split('--')[1];
+        console.log(id);
         var ref = doc(db, "photos", id);
         console.log(id);
         await deleteDoc(ref).then(() => {
@@ -386,25 +387,15 @@ photoContainer.addEventListener('click', async (e) => {
 });
 
 //add photo to firebase storage and url to firestore
-var imgFiles = [];
-const photoInput = document.getElementById('imageInput');
-const imgPreview = document.getElementById('img-preview');
+
 const imgProgress = document.getElementById('imgProgress');
 const photoSubmit = document.getElementById('upload-photo');
-const photoName = document.getElementById('photo-name');
-const photoExt = document.getElementById('photo-ext');
-
-
-
-
-    
    
 
 photoSubmit.addEventListener('click', async (e) => {
     e.preventDefault();
 
     const photoInput = document.getElementById('imageInput');
-    const imgPreview = document.getElementById('img-preview');
 
     var file = photoInput.files[0];
     var storageRef = sRef(storage, 'photos/' + file.name);
@@ -414,7 +405,108 @@ photoSubmit.addEventListener('click', async (e) => {
         img: ""
     }
     handleWelcomeUpload( uploadTask, data, addDoc, imgProgress, photosRef);
+    
 });
+
+//generate vimeo iframe
+function generateIframe(vimeoLink) {
+    var videoId = vimeoLink.split("/").pop().split("?")[0];
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://player.vimeo.com/video/" + videoId;
+    iframe.width = "200";
+    iframe.height = "";
+    iframe.frameborder = "0";
+    iframe.allow = "autoplay; fullscreen";
+    return iframe;
+  }
+
+//generate link from iframe
+function generateLink(iframe) {
+    var videoId = iframe.split("/").pop().split("?")[0];
+    var link = document.createElement("a");
+    link.href = "https://vimeo.com/" + videoId;
+    link.innerHTML = "https://vimeo.com/" + videoId;
+    return link;
+}
+  
+  
+
+//video data
+let videos = [];
+let videoIds = [];
+let videoContainer = document.getElementById('video-container');
+
+onSnapshot(videosRef, (querySnapshot) => {
+    querySnapshot.docs.forEach((doc) =>{
+        videos.push({ ...doc.data() });
+        videoIds.push(doc.id);
+    });
+    
+    for (let i = 0; i < videos.length; i++) {
+        try {
+            let iframe = generateIframe(videos[i].src);
+            let videoSlide = document.createElement("div");
+            videoSlide.className = "video-slide";
+            videoSlide.appendChild(iframe);
+            videoContainer.appendChild(videoSlide);
+            //add remove button
+            let removeButton = document.createElement("button");
+            removeButton.className = "button";
+            removeButton.innerHTML = "&#10005;";
+            removeButton.id = `delete__button--${videoIds[i]}`;
+            videoSlide.appendChild(removeButton);
+        } catch (error) {
+            console.error(error);
+            let errorDiv = document.createElement("div");
+            errorDiv.className = "error";
+            errorDiv.innerHTML = `Error: ${error.message}`;
+            videoContainer.appendChild(errorDiv);
+
+        }
+    }
+});
+
+//delete video
+videoContainer.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if(e.target.id.includes('delete__button--')){
+        const id = e.target.id.split('--')[1];
+        console.log(id);
+        var ref = doc(db, "videos", id);
+        console.log(id);
+        await deleteDoc(ref).then(() => {
+            window.location.reload();
+            console.log('deleted' + id);
+        }).catch((error) => {
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
+        });
+    }
+});
+    
+
+//send video to firestore
+const videoSubmit = document.getElementById('upload-video');
+videoSubmit.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    var video = document.getElementById('video');
+    addDoc(videosRef, {
+        src: video.value
+    }).then(() => {
+        window.location.reload();  
+    }).catch((error) => {
+        swal({
+            title: "Prosím prihláste sa",
+            icon: "warning",
+            button: "OK",
+        })
+    });
+});
+
 
 //rezervations data
 let rezervations = [];

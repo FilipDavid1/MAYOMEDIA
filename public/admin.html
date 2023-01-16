@@ -146,12 +146,21 @@
       </div>
 
       <section class="content" id="content" style="display: none;">
+        <form action="">
+          <label for="video">Nahraj video</label>
+          <input type="text" id="video" name="video" placeholder="https://www.youtube.com/watch?v=..."><br>
+          <button type="button" id="upload-video" class="button">Upload</button>
+        </form>
+        <div class="row" id="video-container" style="gap: 1rem;">
+
+        </div>
         <form>
+          <label for="imageInput">Nahraj fotku</label>
           <img src="" alt="" id="photos-img" style="width: 40%;"><br>
-          <label for="imageInput" class="button">Vybrať obrazok</label> 
+          
           <input type="file" id="imageInput" name="imageInput" accept="image/*" onchange="handlePhotoPreview(document.getElementById('imageInput'), document.getElementById('photos-img'))">
 
-          
+          <label for="imageInput" class="button">Vybrať obrazok</label> 
           <button type="button" id="upload-photo" class="button">Upload</button>
         </form>        
         <div class="photos-section">
