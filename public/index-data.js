@@ -13,7 +13,7 @@ let welcomeData = [];
 onSnapshot(welcomeRef, (querySnapshot) => {
     let nameW = document.getElementById('name-welcome');  
     let servicesW = document.getElementById('service-w');
-    let welcomeImg = document.getElementById('welcome-img');
+    let welcomeImg = document.getElementById('welcome-img-img');
     // let textW = document.getElementById('text-welcome');
 
     querySnapshot.docs.forEach((doc) =>{
