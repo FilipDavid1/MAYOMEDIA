@@ -117,59 +117,18 @@ onSnapshot(serviceRef, (querySnapshot) => {
 //photos data
 document.addEventListener("DOMContentLoaded", function(){
     let photos = [];
-    let currentIndex = 0;
-    const photoContainer = document.getElementById('grid');
-    const prevButton = document.getElementById('prev-button-photos');
-    const nextButton = document.getElementById('next-button-photos');
-    
-    prevButton.addEventListener('click', () => {
-        console.log(currentIndex);
-        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-        console.log(currentIndex);
-        updateFullscreen(currentIndex);
-    });
-    nextButton.addEventListener('click', () => {
-        console.log(currentIndex);
-        currentIndex = (currentIndex + 1) % photos.length;
-        console.log(currentIndex);
-        updateFullscreen(currentIndex);
-
-    });
-
-    function updateFullscreen(index) {
-        const fullscreen = document.querySelector('.column .fullscreen');
-        if(fullscreen !== null){
-            fullscreen.src = photos[index].img ;
-            console.log(fullscreen.src);
-        }
-    }
-    
-       
-        
+    const gallery = document.getElementById('gallery');
 
     onSnapshot(photosRef, (querySnapshot) => {
         querySnapshot.docs.forEach((doc) =>{
             photos.push({ ...doc.data() });
         });
-        photoContainer.innerHTML = photos.map(photo => `
-        <div class="column">
-            <img src="${photo.img}" alt="photo" class="photo">
-        </div>`).join('');
-
-        // Add click event listener to each photo element
-        const photoElements = document.querySelectorAll('.column');
-        photoElements.forEach((photo) => {
-            photo.addEventListener('click', (event) => {
-                console.log(event.target.classList);
-                event.target.classList.toggle('fullscreen');
-                event.stopPropagation();
-                currentIndex = photos.findIndex(p => p.img === event.target.src);
-            });
+        gallery.innerHTML = photos.map(photo => `
+        <a href="${photo.img}" data-lightbox="wedding">
+            <img src="${photo.img}" alt="photo">
+        </a>
             
-        });
-        setTimeout(() => {
-            updateFullscreen(currentIndex);
-        }, 100);        
+        `).join('');       
     });
 });
 
