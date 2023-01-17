@@ -532,8 +532,8 @@ onSnapshot(rezervationRef, (querySnapshot) => {
                 <p class="rezervation__service">${rezervation.date}</p>
             </article>
             <article class="rezervation__buttons">
-                <button class="rezervation__button" id="rezervation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Potvrdiť</button>
-                <button class="rezervation__button" id="reservation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
+                <button class="rezervation__button button" id="rezervation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Potvrdiť</button>
+                <button class="rezervation__button button" id="reservation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
             </article>
         </section>
     `).join('');
@@ -547,6 +547,43 @@ rezervationTable.addEventListener('click', async (e) => {
         await deleteDoc(ref).then(() => {
             //reload data
             window.location.reload();
+        }).catch((error) => {
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "warning",
+                button: "OK",
+            })
+        });
+    }
+});
+
+//confirm rezervation and send email
+rezervationTable.addEventListener('click', async (e) => {
+    if(e.target.classList.contains('rezervation__button')){
+        let id = e.target.id.split('--')[1];
+        var ref = doc(db, "events", id);
+        await updateDoc(ref, {
+            confirmed: true
+        }).then(() => {
+            //send email
+            Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "filipenkodavid@gmail.com",
+                Password : "AF6A083089573C2DABE00784ED4A477AFB4F",
+                To : rezervations[rezervationIds.indexOf(id)].email,
+                From : "filipenkodavid@gmail.com",
+                Subject : "Potvrdenie rezervácie",
+                //add name to body
+                Body : `Dobrý deň ${rezervations[rezervationIds.indexOf(id)].name}, Vaša rezervácia bola potvrdená.`
+            }).then(
+
+                //token 43171db-5be2-4935-9813-559d62b2ca2d 
+                message => swal({
+                    title: "Rezervácia potvrdená",
+                    icon: "success",
+                    button: "OK",
+                })
+            );
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
@@ -577,7 +614,7 @@ onSnapshot(messagesRef, (querySnapshot) => {
                 <p class="message__message">${message.message}</p>
             </article>
             <article class="message__buttons">
-                <button class="message__button" id="message__button--${messageIds[messages.indexOf(message)]}">Zmazať</button>
+                <button class="message__button button" id="message__button--${messageIds[messages.indexOf(message)]}">Zmazať</button>
             </article>
         </section>
     `).join('');
