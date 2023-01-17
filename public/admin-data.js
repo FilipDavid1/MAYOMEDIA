@@ -533,7 +533,7 @@ onSnapshot(rezervationRef, (querySnapshot) => {
             </article>
             <article class="rezervation__buttons">
                 <button class="rezervation__button button" id="rezervation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Potvrdiť</button>
-                <button class="rezervation__button button" id="reservation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
+                <button class="rezervation__button button" id="reservation__buttond--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
             </article>
         </section>
     `).join('');
@@ -541,7 +541,7 @@ onSnapshot(rezervationRef, (querySnapshot) => {
 
 //delete rezervation
 rezervationTable.addEventListener('click', async (e) => {
-    if(e.target.classList.contains('rezervation__button')){
+    if(e.target.classList.contains('rezervation__buttond')){
         let id = e.target.id.split('--')[1];
         var ref = doc(db, "events", id);
         await deleteDoc(ref).then(() => {
@@ -559,17 +559,19 @@ rezervationTable.addEventListener('click', async (e) => {
 
 //confirm rezervation and send email
 rezervationTable.addEventListener('click', async (e) => {
+    e.preventDefault();
     if(e.target.classList.contains('rezervation__button')){
         let id = e.target.id.split('--')[1];
         var ref = doc(db, "events", id);
         await updateDoc(ref, {
             confirmed: true
         }).then(() => {
+            console.log('confirmed' + id);
             //send email
             Email.send({
-                Host : "smtp.elasticemail.com",
+                Host: "smtp.elasticemail.com",
                 Username : "filipenkodavid@gmail.com",
-                Password : "AF6A083089573C2DABE00784ED4A477AFB4F",
+                Password : "0E0B2AEA6936996C33FACE7F5E93E3860AC9",
                 To : rezervations[rezervationIds.indexOf(id)].email,
                 From : "filipenkodavid@gmail.com",
                 Subject : "Potvrdenie rezervácie",
@@ -578,13 +580,13 @@ rezervationTable.addEventListener('click', async (e) => {
             }).then(
 
                 //token 43171db-5be2-4935-9813-559d62b2ca2d 
-                message => swal({
-                    title: "Rezervácia potvrdená",
-                    icon: "success",
-                    button: "OK",
-                })
+                message => {
+                    console.log(message);
+                    
+                }
             );
         }).catch((error) => {
+            console.log(error);
             swal({
                 title: "Prosím prihláste sa",
                 icon: "warning",
