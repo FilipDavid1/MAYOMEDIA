@@ -569,9 +569,7 @@ rezervationTable.addEventListener('click', async (e) => {
             console.log('confirmed' + id);
             //send email
             Email.send({
-                Host: "smtp.elasticemail.com",
-                Username : "filipenkodavid@gmail.com",
-                Password : "0E0B2AEA6936996C33FACE7F5E93E3860AC9",
+                SecureToken: "4724d794-83ea-4e48-98f1-bac030137e0b",
                 To : rezervations[rezervationIds.indexOf(id)].email,
                 From : "filipenkodavid@gmail.com",
                 Subject : "Potvrdenie rezervácie",
