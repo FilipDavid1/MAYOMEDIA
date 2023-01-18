@@ -316,6 +316,10 @@ h2 {
 
 @media screen and (max-width: 992px) {
 
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
   .slides-container {
     margin-bottom: 2em;
   }
@@ -1743,3 +1747,4 @@ select::-ms-expand {
 .gallery-photos h2 {
   color: white !important;
 }
+
