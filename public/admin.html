@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/0v7zftkfzknl2y86q95632yntxev9r73ttowluj6b7d2hjoq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.3/index.global.min.js"></script>
     <script>
       tinymce.init({
         selector: '#about-text',
@@ -62,6 +63,7 @@
           <a href="./index.html" >Domov</a>
           <a href="./services.html" >Služby</a>
           <a href="./content.html">Tvorba</a>
+          <a href="./free-dates.html">Voľné termíny</a>
           <a href="./contact.html">Kontakt</a>
           <a href="./signIn.html">Prihlásiť sa</a>
         </div>
@@ -74,6 +76,7 @@
           <li><a data-content="content2" id="content-page">Tvorba</a></li>
           <li><a data-content="content3" id="reservations">Rezervácie</a></li>
           <li><a data-content="content4" id="messages">Správy</a></li>
+          <li><a data-content="content5" id="calendarPage">Kalendár</a></li>
         </ul>
       </div>
 
@@ -169,6 +172,10 @@
           </div>
         </div>
         
+      </section>
+
+      <section class="calendar" id='calendar' >
+
       </section>
   
       <form class="form" id="service-form">

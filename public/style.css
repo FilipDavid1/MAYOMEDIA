@@ -1748,3 +1748,14 @@ select::-ms-expand {
   color: white !important;
 }
 
+
+
+.free-dates-h2 {
+  color: #252525;
+  font-size: 3em;
+  font-weight: 600;
+  text-align: center;
+  margin: 0.5em;
+  text-decoration: underline;
+  text-decoration-color: #AA1A45;
+}

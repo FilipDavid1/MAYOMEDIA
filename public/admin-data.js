@@ -9,6 +9,7 @@ const page = document.getElementById('page');
 const contentPage = document.getElementById('content-page');
 const reservations = document.getElementById('reservations');
 const messagesPage = document.getElementById('messages');
+const calendarPage = document.getElementById('calendarPage');
 
 //html welcome elements
 let welcomeId;
@@ -75,34 +76,22 @@ const rezervationTable = document.getElementById('rezervation-table');
 let messageId;
 const messageTable = document.getElementById('messages-table');
 
-//switch pages
-page.addEventListener('click', (e) => {
-    document.getElementById('page-elements').style.display = "block";
-    document.getElementById('rezervation-table').style.display = "none";
-    document.getElementById('messages-table').style.display = "none";
-    document.getElementById('content').style.display = "none";
-});
+function showElement(elementId) {
+    const elementIds = ['page-elements', 'rezervation-table', 'messages-table', 'content', 'calendar'];
+    elementIds.forEach(id => {
+        if (id === elementId) {
+            document.getElementById(id).style.display = 'block';
+        } else {
+            document.getElementById(id).style.display = 'none';
+        }
+    });
+}
 
-contentPage.addEventListener('click', (e) => {
-    document.getElementById('content').style.display = "block";
-    document.getElementById('page-elements').style.display = "none";
-    document.getElementById('rezervation-table').style.display = "none";
-    document.getElementById('messages-table').style.display = "none";
-});
-
-reservations.addEventListener('click', (e) => {
-   document.getElementById('rezervation-table').style.display = "block";
-   document.getElementById('page-elements').style.display = "none";
-   document.getElementById('messages-table').style.display = "none"; 
-   document.getElementById('content').style.display = "none";
-});
-
-messagesPage.addEventListener('click', (e) => {
-    document.getElementById('messages-table').style.display = "block";
-    document.getElementById('page-elements').style.display = "none";
-    document.getElementById('rezervation-table').style.display = "none";
-    document.getElementById('content').style.display = "none";
-});
+page.addEventListener('click', (e) => showElement('page-elements'));
+contentPage.addEventListener('click', (e) => showElement('content'));
+reservations.addEventListener('click', (e) => showElement('rezervation-table'));
+messagesPage.addEventListener('click', (e) => showElement('messages-table'));
+calendarPage.addEventListener('click', (e) => showElement('calendar'));
 
 //upload photo
 function handleWelcomeUpload(uploadTask, data, docMethod, loader, ref) {
@@ -574,7 +563,36 @@ rezervationTable.addEventListener('click', async (e) => {
                 From : "filipenkodavid@gmail.com",
                 Subject : "Potvrdenie rezervácie",
                 //add name to body
-                Body : `Dobrý deň ${rezervations[rezervationIds.indexOf(id)].name}, Vaša rezervácia bola potvrdená.`
+                Body : `<h1>Congratulations ${rezervations[rezervationIds.indexOf(id)].name} on your upcoming wedding!</h1>
+                <p>We are delighted to confirm that we will be providing videography services for your special day.</p>
+                <table>
+                  <tr>
+                    <th>Date</th>
+                    <td>${rezervations[rezervationIds.indexOf(id)].date}</td>
+                  </tr>
+                  <tr>
+                    <th>Start Time</th>
+                    <td>{{START_TIME}}</td>
+                  </tr>
+                  <tr>
+                    <th>End Time</th>
+                    <td>{{END_TIME}}</td>
+                  </tr>
+                  <tr>
+                    <th>Location</th>
+                    <td>{{VENUE_NAME}}</td>
+                  </tr>
+                  <tr>
+                    <th>Contact Person</th>
+                    <td>Mayo Dávid</td>
+                  </tr>
+                  <tr>
+                    <th>Contact Number</th>
+                    <td>+421 908 253 293</td>
+                  </tr>
+                </table>
+                <p>Please let us know if there are any changes or if you have any special requests for your wedding video.</p>
+                <p>We look forward to capturing the special moments of your big day!</p>`
             }).then(
 
                 //token 43171db-5be2-4935-9813-559d62b2ca2d 
@@ -638,3 +656,29 @@ messageTable.addEventListener('click', async (e) => {
     }
 });
 
+//display confirmed rezervations in calendar and disable that day
+var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+    events: function(info, successCallback, failureCallback) {
+        var events = [];
+        onSnapshot(rezervationRef, (querySnapshot) => {
+            querySnapshot.docs.forEach((doc) => {
+                //disable date if confirmed
+                if(doc.data().confirmed == true){
+                    var data = doc.data();
+                    console.log(data);
+                    events.push({
+                        title: data.service + ' - ' + data.name,
+                        start: data.date,
+                        allDay: true,
+                        backgroundColor: '#AA1A45',
+                        borderColor: '#252525',
+                });
+            }
+                
+        });
+        successCallback(events);
+    });
+},
+    locale: 'sk',
+});
+calendar.render();
