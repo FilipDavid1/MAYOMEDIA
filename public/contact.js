@@ -1,4 +1,4 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './firebase.js';
+import { db, collection, getDocs, addDoc, onSnapshot } from './firebase.js';
 
 //html elements
 const form = document.getElementById('contact-form');

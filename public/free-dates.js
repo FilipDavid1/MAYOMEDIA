@@ -1,5 +1,4 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc, updateDoc,  } from './firebase.js';
-import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.6.9/firebase-storage.js';
+import { db, collection, onSnapshot,  } from './firebase.js';
 
 const rezervationRef = collection(db, 'events');
 

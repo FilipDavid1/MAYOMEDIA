@@ -1,4 +1,4 @@
-import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc , auth} from './firebase.js';
+import { db, collection, getDocs, onSnapshot, auth} from './firebase.js';
 
 
 //collection reference
@@ -204,10 +204,3 @@ onSnapshot(videoRef, (querySnapshot) => {
 
 
 
-
-//service button move to service page
-// const reserveBtn = document.getElementById('reserve');
-// reserveBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     window.location.href = 'services.html';
-// })

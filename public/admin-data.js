@@ -76,6 +76,7 @@ const rezervationTable = document.getElementById('rezervation-table');
 let messageId;
 const messageTable = document.getElementById('messages-table');
 
+//show elements
 function showElement(elementId) {
     const elementIds = ['page-elements', 'rezervation-table', 'messages-table', 'content', 'calendar'];
     elementIds.forEach(id => {

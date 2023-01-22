@@ -5,6 +5,7 @@ import { db, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from './f
 const bookingForm = document.getElementById('booking-form');
 const credentialsForm = document.getElementById('credentials-form');
 const form = document.getElementById('form');
+const date = document.getElementById('cal');
 
 //collection reference
 const colRef = collection(db, 'services');
@@ -114,3 +115,37 @@ credentialsForm.addEventListener('submit', (e) => {
 //     deleteDoc(doc(db, "test", testDeleteForm.id.value));
 //     testDeleteForm.reset();
 // });
+
+//get dates
+
+
+const rezervationRef = collection(db, 'events');
+
+
+        var disabledDates = [];
+        onSnapshot(rezervationRef, (querySnapshot) => { 
+            querySnapshot.docs.forEach((doc) => {
+                //disable date if confirmed
+                if(doc.data().confirmed == true){
+                    var data = doc.data();
+                    console.log(data);
+                    disabledDates.push(data.date);
+                    console.log(disabledDates);
+                }
+            })
+            flatpickr("#cal", {
+                inline: true,
+                disable: [
+                    function(date) {
+                        var selectedDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0');
+                        return disabledDates.indexOf(selectedDate) !== -1;
+                    }
+                ],
+                dateFormat: "Y-m-d",
+            });
+                
+        });
+
+       
+        
+
