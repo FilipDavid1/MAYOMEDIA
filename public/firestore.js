@@ -81,6 +81,8 @@ credentialsForm.addEventListener('submit', (e) => {
         email,
         message,
         service: selected.name,
+        price: selected.price,
+        confirmed: false,
     }
     credentialsForm.style.display = 'none';
     content.style.opacity = 1;

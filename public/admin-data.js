@@ -503,8 +503,11 @@ let rezervations = [];
 let rezervationIds = [];
 onSnapshot(rezervationRef, (querySnapshot) => {
     querySnapshot.docs.forEach((doc) => {
+        //add only if not confirmed
+        if(doc.data().confirmed == false ){
         rezervations.push({ ...doc.data() });
         rezervationIds.push(doc.id);
+        }
     });
     rezervationTable.innerHTML = rezervations.map( rezervation => `
         <section class="rezervation">
@@ -520,6 +523,8 @@ onSnapshot(rezervationRef, (querySnapshot) => {
                 <p class="rezervation__time">${rezervation.message}</p>
                 <label class="rezervation__label">Dátum:</label>
                 <p class="rezervation__service">${rezervation.date}</p>
+                <label class="rezervation__label">Cena:</label>
+                <p class="rezervation__service">${rezervation.price}</p>
             </article>
             <article class="rezervation__buttons">
                 <button class="rezervation__button button" id="rezervation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Potvrdiť</button>
@@ -535,8 +540,19 @@ rezervationTable.addEventListener('click', async (e) => {
         let id = e.target.id.split('--')[1];
         var ref = doc(db, "events", id);
         await deleteDoc(ref).then(() => {
-            //reload data
-            window.location.reload();
+            //send email
+            Email.send({   
+                SecureToken: "4724d794-83ea-4e48-98f1-bac030137e0b",
+                To : rezervations[rezervationIds.indexOf(id)].email,
+                From : "filipenkodavid@gmail.com",
+                Subject : "Zamietnutie rezervácie",
+                Body : "Vaša rezervácia bola zamietnutá"
+            }).then(
+                message => {
+                    console.log(message);
+                    window.location.reload();
+                }
+            );
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
@@ -564,36 +580,232 @@ rezervationTable.addEventListener('click', async (e) => {
                 From : "filipenkodavid@gmail.com",
                 Subject : "Potvrdenie rezervácie",
                 //add name to body
-                Body : `<h1>Congratulations ${rezervations[rezervationIds.indexOf(id)].name} on your upcoming wedding!</h1>
-                <p>We are delighted to confirm that we will be providing videography services for your special day.</p>
-                <table>
-                  <tr>
-                    <th>Date</th>
-                    <td>${rezervations[rezervationIds.indexOf(id)].date}</td>
-                  </tr>
-                  <tr>
-                    <th>Start Time</th>
-                    <td>{{START_TIME}}</td>
-                  </tr>
-                  <tr>
-                    <th>End Time</th>
-                    <td>{{END_TIME}}</td>
-                  </tr>
-                  <tr>
-                    <th>Location</th>
-                    <td>{{VENUE_NAME}}</td>
-                  </tr>
-                  <tr>
-                    <th>Contact Person</th>
-                    <td>Mayo Dávid</td>
-                  </tr>
-                  <tr>
-                    <th>Contact Number</th>
-                    <td>+421 908 253 293</td>
-                  </tr>
+                Body : `<!DOCTYPE html>
+
+                <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+                <head>
+                <title></title>
+                <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+                <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+                <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->
+                <style>
+                        * {
+                            box-sizing: border-box;
+                        }
+                
+                        body {
+                            margin: 0;
+                            padding: 0;
+                            background-color: black !important;
+                            color: #fff !important;
+                        }
+                
+                        a[x-apple-data-detectors] {
+                            color: inherit !important;
+                            text-decoration: inherit !important;
+                        }
+                
+                        #MessageViewBody a {
+                            color: inherit;
+                            text-decoration: none;
+                        }
+                
+                        p {
+                            line-height: inherit
+                        }
+                
+                        .desktop_hide,
+                        .desktop_hide table {
+                            mso-hide: all;
+                            display: none;
+                            max-height: 0px;
+                            overflow: hidden;
+                        }
+                
+                        @media (max-width:520px) {
+                            .desktop_hide table.icons-inner {
+                                display: inline-block !important;
+                            }
+                
+                            .icons-inner {
+                                text-align: center;
+                            }
+                
+                            .icons-inner td {
+                                margin: 0 auto;
+                            }
+                
+                            .row-content {
+                                width: 100% !important;
+                            }
+                
+                            .mobile_hide {
+                                display: none;
+                            }
+                
+                            .stack .column {
+                                width: 100%;
+                                display: block;
+                            }
+                
+                            .mobile_hide {
+                                min-height: 0;
+                                max-height: 0;
+                                max-width: 0;
+                                overflow: hidden;
+                                font-size: 0px;
+                            }
+                
+                            .desktop_hide,
+                            .desktop_hide table {
+                                display: table !important;
+                                max-height: none !important;
+                            }
+                        }
+                    </style>
+                </head>
+                <body style="background-color: #FFFFFF; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+                <table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #FFFFFF;" width="100%">
+                <tbody>
+                <tr>
+                <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tbody>
+                <tr>
+                <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 500px;" width="500">
+                <tbody>
+                <tr>
+                <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
+                <table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
+                </td>
+                </tr>
                 </table>
-                <p>Please let us know if there are any changes or if you have any special requests for your wedding video.</p>
-                <p>We look forward to capturing the special moments of your big day!</p>`
+                <table border="0" cellpadding="0" cellspacing="0" class="heading_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad" style="width:100%;text-align:center;">
+                <h1 style="margin: 0; color: #555555; font-size: 23px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">${rezervations[rezervationIds.indexOf(id)].name}, S radosťou potvrdzujeme, že poskytneme služby kameramana pre váš špeciálny deň.</h1>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="paragraph_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <div style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+                <p style="margin: 0;">Dodatočné informácie:</p>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="list_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <ul style="margin: 0; padding: 0; margin-left: 20px; list-style-type: revert; color: #000000; font-size: 14px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-weight: 400; line-height: 120%; text-align: left; direction: ltr; letter-spacing: 0px;">
+                <li style="margin-bottom: 0px;">Miesto konania: </li>
+                <li style="margin-bottom: 0px;">Dátum konania: ${rezervations[rezervationIds.indexOf(id)].date}</li>
+                <li>Cena: ${rezervations[rezervationIds.indexOf(id)].price}€</li>
+                </ul>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="divider_block block-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad">
+                <div align="center" class="alignment">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
+                </tr>
+                </table>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="paragraph_block block-6" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <div style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+                <p style="margin: 0; margin-bottom: 16px;">Pre ďalšie otázky ma neváhajte kontaktovať</p>
+                <p style="margin: 0; margin-bottom: 16px;">Kontaktná osoba: Mayo Dávid</p>
+                <p style="margin: 0; margin-bottom: 16px;">Kontaktné číslo: +421 908 253 293</p>
+                <p style="margin: 0;">Email:  <a href="mailto:gifot65349@fom8.com?subject=Otázky k rezervácií ">Pošlite mi email</a></p>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="divider_block block-7" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad">
+                <div align="center" class="alignment">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
+                </tr>
+                </table>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="paragraph_block block-8" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <div style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+                <p style="margin: 0; margin-bottom: 16px;">Prosím, dajte nám vedieť, ak sú tu akékoľvek zmeny alebo ak máte nejaké špeciálne požiadavky na vaše svadobné video.</p>
+                <p style="margin: 0;">Tešíme sa na zachytenie špeciálnych okamihov vášho veľkého dňa!</p>
+                </div>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tbody>
+                <tr>
+                <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 500px;" width="500">
+                <tbody>
+                <tr>
+                <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
+                <table border="0" cellpadding="0" cellspacing="0" class="icons_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad" style="vertical-align: middle; color: #9d9d9d; font-family: inherit; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="alignment" style="vertical-align: middle; text-align: center;">
+                <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+                <!--[if !vml]><!-->
+                <table cellpadding="0" cellspacing="0" class="icons-inner" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
+                <!--<![endif]-->
+                
+                </table>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table><!-- End -->
+                </body>
+                </html>`
             }).then(
 
                 //token 43171db-5be2-4935-9813-559d62b2ca2d 
