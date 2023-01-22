@@ -24,7 +24,6 @@ onSnapshot(contactInfoRef, () => {
 
 //contact form
 form.addEventListener('submit', (e) => {
-    console.log(form.email.value, form.name.value, form.phone.value, form.message.value);
     e.preventDefault();
     addDoc(colRef, {
         email: form.email.value,

@@ -43,7 +43,6 @@ auth.onAuthStateChanged(user => {
       onSnapshot(aboutRef, () =>{
         let textA = document.getElementById('text-about');
         let aboutImg = document.getElementById('about-img-img');
-        console.log("User is signed in" + user.uid);
 
         getDocs(aboutRef).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {

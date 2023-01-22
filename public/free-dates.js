@@ -10,7 +10,6 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
                 //disable date if confirmed
                 if(doc.data().confirmed == true){
                     var data = doc.data();
-                    console.log(data);
                     events.push({
                         title: 'Obsadené',
                         start: data.date,

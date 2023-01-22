@@ -119,7 +119,6 @@ function handleWelcomeUpload(uploadTask, data, docMethod, loader, ref) {
         console.log(error);
     }, function() {
         getDownloadURL(uploadTask.snapshot.ref).then(function(downloadURL) {
-            console.log('File available at', downloadURL);
             data.img= downloadURL;
             docMethod(ref, data)
                 .then(() => {
@@ -360,12 +359,9 @@ photoContainer.addEventListener('click', async (e) => {
     e.preventDefault();
     if(e.target.id.includes('delete__button--')){
         const id = e.target.id.split('--')[1];
-        console.log(id);
         var ref = doc(db, "photos", id);
-        console.log(id);
         await deleteDoc(ref).then(() => {
             window.location.reload();
-            console.log('deleted' + id);
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
@@ -461,12 +457,9 @@ videoContainer.addEventListener('click', async (e) => {
     e.preventDefault();
     if(e.target.id.includes('delete__button--')){
         const id = e.target.id.split('--')[1];
-        console.log(id);
         var ref = doc(db, "videos", id);
-        console.log(id);
         await deleteDoc(ref).then(() => {
             window.location.reload();
-            console.log('deleted' + id);
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
@@ -572,7 +565,6 @@ rezervationTable.addEventListener('click', async (e) => {
         await updateDoc(ref, {
             confirmed: true
         }).then(() => {
-            console.log('confirmed' + id);
             //send email
             Email.send({
                 SecureToken: "4724d794-83ea-4e48-98f1-bac030137e0b",
@@ -878,7 +870,6 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
                 //disable date if confirmed
                 if(doc.data().confirmed == true){
                     var data = doc.data();
-                    console.log(data);
                     events.push({
                         title: data.service + ' - ' + data.name,
                         start: data.date,

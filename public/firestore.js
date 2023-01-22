@@ -130,9 +130,7 @@ const rezervationRef = collection(db, 'events');
                 //disable date if confirmed
                 if(doc.data().confirmed == true){
                     var data = doc.data();
-                    console.log(data);
                     disabledDates.push(data.date);
-                    console.log(disabledDates);
                 }
             })
             flatpickr("#cal", {
