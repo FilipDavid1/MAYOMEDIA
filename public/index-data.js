@@ -60,58 +60,58 @@ auth.onAuthStateChanged(user => {
     }
   });
 
-// foreach service data in card container
-let services = [];
-onSnapshot(serviceRef, (querySnapshot) => {
-    let cardContainer = document.getElementById('card-container');
-    querySnapshot.docs.forEach((doc) =>{
-        services.push({ ...doc.data() })
-    })
-    cardContainer.innerHTML = services.map(service => `
-    <div class="card">
-        <div class="card-text">
-            <h3>${service.name}</h3>
-        <div class="flex">
-            <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em;">
-            <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
-        </div>
-        </div>
-    </div>`).join('');
+// // foreach service data in card container
+// let services = [];
+// onSnapshot(serviceRef, (querySnapshot) => {
+//     let cardContainer = document.getElementById('card-container');
+//     querySnapshot.docs.forEach((doc) =>{
+//         services.push({ ...doc.data() })
+//     })
+//     cardContainer.innerHTML = services.map(service => `
+//     <div class="card">
+//         <div class="card-text">
+//             <h3>${service.name}</h3>
+//         <div class="flex">
+//             <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em;">
+//             <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
+//         </div>
+//         </div>
+//     </div>`).join('');
 
     
 
-    //cards for mobile
-    let cardContainerM = document.getElementById('slides-container');
-    cardContainerM.innerHTML = services.map(service => `
-    <li class="slide">
-        <div class="card">
-            <div class="card-text">
-                <h3>${service.name}</h3>
-            <div class="flex">
-                <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em; max-width="300px"">
-                <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
-            </div>
-            </div>
-        </div>
-    </li>`).join('');
-})
+//     //cards for mobile
+//     let cardContainerM = document.getElementById('slides-container');
+//     cardContainerM.innerHTML = services.map(service => `
+//     <li class="slide">
+//         <div class="card">
+//             <div class="card-text">
+//                 <h3>${service.name}</h3>
+//             <div class="flex">
+//                 <img src="${service.img}" alt="service image" class="card-images" style="padding-bottom: 1em; max-width="300px"">
+//                 <button class="button" id="reserve" onclick="location.href='./services.html'">Detail</button>
+//             </div>
+//             </div>
+//         </div>
+//     </li>`).join('');
+// })
 
-    const slidesContainer = document.getElementById("slides-container");
-    const slide = document.querySelector(".slide");
-    const prevButton = document.getElementById("slide-arrow-prev");
-    const nextButton = document.getElementById("slide-arrow-next");
-    const testOfS = document.getElementById('slides-container');
+//     const slidesContainer = document.getElementById("slides-container");
+//     const slide = document.querySelector(".slide");
+//     const prevButton = document.getElementById("slide-arrow-prev");
+//     const nextButton = document.getElementById("slide-arrow-next");
+//     const testOfS = document.getElementById('slides-container');
 
-    let slideWidth = 0;
-    nextButton.addEventListener("click", () => {
-        slideWidth = testOfS.offsetWidth;
-    slidesContainer.scrollLeft += slideWidth;
-    });
+//     let slideWidth = 0;
+//     nextButton.addEventListener("click", () => {
+//         slideWidth = testOfS.offsetWidth;
+//     slidesContainer.scrollLeft += slideWidth;
+//     });
 
-    prevButton.addEventListener("click", () => {
-        slideWidth = testOfS.offsetWidth;
-    slidesContainer.scrollLeft -= slideWidth;
-    });
+//     prevButton.addEventListener("click", () => {
+//         slideWidth = testOfS.offsetWidth;
+//     slidesContainer.scrollLeft -= slideWidth;
+//     });
 
 //photos data
 document.addEventListener("DOMContentLoaded", function(){

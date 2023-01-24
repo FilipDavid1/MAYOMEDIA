@@ -127,7 +127,7 @@ function handleWelcomeUpload(uploadTask, data, docMethod, loader, ref) {
                     loader.style.display = "none";
                     swal({
                         title: "Prosím prihláste sa",
-                        icon: "warning",
+                        icon: "error",
                         button: "OK",
                     });
                 });
@@ -240,7 +240,7 @@ serviceSubmit.addEventListener('click', async (e) => {
             serviceLoader.style.display = "none";
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });
@@ -258,7 +258,7 @@ serviceDelete.addEventListener('click', async (e) => {
         serviceLoader.style.display = "none";
         swal({
             title: "Prosím prihláste sa",
-            icon: "warning",
+            icon: "error",
             button: "OK",
         })
     });
@@ -331,7 +331,7 @@ contactSubmit.addEventListener('click', async (e) => {
             contactLoader.style.display = "none";
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });
@@ -365,7 +365,7 @@ photoContainer.addEventListener('click', async (e) => {
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });
@@ -463,7 +463,7 @@ videoContainer.addEventListener('click', async (e) => {
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });
@@ -484,7 +484,7 @@ videoSubmit.addEventListener('click', async (e) => {
     }).catch((error) => {
         swal({
             title: "Prosím prihláste sa",
-            icon: "warning",
+            icon: "error",
             button: "OK",
         })
     });
@@ -549,7 +549,7 @@ rezervationTable.addEventListener('click', async (e) => {
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });
@@ -810,7 +810,7 @@ rezervationTable.addEventListener('click', async (e) => {
             console.log(error);
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });
@@ -854,7 +854,7 @@ messageTable.addEventListener('click', async (e) => {
         }).catch((error) => {
             swal({
                 title: "Prosím prihláste sa",
-                icon: "warning",
+                icon: "error",
                 button: "OK",
             })
         });

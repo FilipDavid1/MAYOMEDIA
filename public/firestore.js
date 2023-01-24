@@ -87,7 +87,8 @@ credentialsForm.addEventListener('submit', (e) => {
     credentialsForm.style.display = 'none';
     content.style.opacity = 1;
 
-    //add data to firestore
+    //add data to firestore if all fields are filled 
+    if(name != '' && phone != '' && date != '' && email != '' && message != ''){
     addDoc(eventRef, data);
     
     swal({
@@ -95,6 +96,14 @@ credentialsForm.addEventListener('submit', (e) => {
         icon: "success",
         button: "OK",
     })
+}
+else{
+    swal({
+        title: "Vyplňte všetky polia",
+        icon: "error",
+        button: "OK",
+    })
+}
 })
 
 // add data
