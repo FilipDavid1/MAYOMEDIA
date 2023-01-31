@@ -67,7 +67,7 @@
   </form> -->
 
   <div class="flex-container" id="services-content">
-    <div class="flex-child img">
+    <div class="flex-child img" id="service-img">
       <img src="" alt="" id="img">
     </div>
     <form class="flex-child text" id="booking-form">
@@ -88,7 +88,7 @@
   </div>
 
   <form class="form" id="credentials-form" style="display: none;">
-    <span class="close">&#x2715</span>
+    <span class="close" id="close">&#x2715</span>
     <h2>Prosím vyplnte osobné údaje na dokončenie rezervácie</h2>
     <p type="Meno a Priezvisko:"><input placeholder="Vaše meno" id="name"></input></p>
     <p type="Emailová adresa:"><input type="email" placeholder="example@gmail.com" id="email"></input></p>
@@ -99,18 +99,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    
-
-    const form = document.getElementById("form");
-    const close = document.querySelector(".close");
-    const content = document.getElementById("services-content");
-    close.addEventListener("click", () => {
-      form.style.display = "none";
-      content.style.opacity = "1";
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("credentials-form");
+      const close = document.getElementById("close");
+      const content = document.getElementById("services-content");
+      close.addEventListener("click", () => {
+        form.style.display = "none";
+        content.style.opacity = "1";
+      });
     });
   </script>
+  
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
+<footer>© 2022 MAYOMEDIA. Website created by Filip David</footer>
 <script type="module" src="./firestore.js"></script>
 
 </html>

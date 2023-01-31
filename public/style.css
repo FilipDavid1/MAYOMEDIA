@@ -449,9 +449,18 @@ h2 {
 
 @media screen and (max-width: 770px) {
   
+  .flex-container{
+    width: 100% !important;
+  }
+  #service-img {
+    display: none !important;
+  }
   .flex-c {
     display: flex;
     flex-direction: column-reverse;
+  }
+  #price {
+    font-size: 2.5em !important;
   }
 
   .services-mobile {
@@ -1591,7 +1600,7 @@ iframe {
   font-weight: 400;
   margin: 0.5em;
   color: #252525;
-  text-align: start;
+  text-align: justify;
 }
 
 .flex-child h2 {
@@ -1763,4 +1772,20 @@ select::-ms-expand {
   margin: 0.5em;
   text-decoration: underline;
   text-decoration-color: #AA1A45;
+}
+
+/*footer*/
+html {
+  min-height: 100vh;
+}
+footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: white;
+  color: #252525;
+  text-align: center;
+  flex-shrink: 0;
+  width: 100%;
 }
