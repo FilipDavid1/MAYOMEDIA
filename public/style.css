@@ -474,6 +474,12 @@ h2 {
     top: 0;
   }
 
+  #calendar {
+    width: 100% !important;
+    height: 500px !important;
+    margin: auto;
+  }
+
   .login-form {
     min-width: 250px;
     max-width: 300px;

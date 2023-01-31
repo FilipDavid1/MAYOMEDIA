@@ -17,7 +17,7 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
                         backgroundColor: '#AA1A45',
                         borderColor: '#252525',
                 });
-            }
+            } 
                 
         });
         successCallback(events);
