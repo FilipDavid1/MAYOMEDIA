@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./lightbox.css">
+    <script defer src="./heh.js">
+    </script>
 </head>
 <body>
   <div class="nav">
@@ -54,9 +56,9 @@
 
       <div class="about">
         <div class="about-text">
-          <h3>O Mne</h3>
-          <h2>AHOJ</h2>
-          <p id="text-about"></p>
+          <h3 class="animate">O Mne</h3>
+          <h2 class="animate">AHOJ</h2>
+          <p class="animate" id="text-about"></p>
         </div>
         <div class="about-img">
           <img src="https://www.cmu.edu/brand/brand-guidelines/images/colors-black-600x600.png" alt="img">
@@ -64,9 +66,8 @@
         </div>
       </div>
 
-
       <div class="video-carousel" id="video-carousel">
-        <h2>Svadobné videá</h2>
+        <h2 class="animate">Svadobné videá</h2>
         
         <button class="nav-button" id="prev">&#8249;</button>
         <button class="nav-button" id="next">&#8250;</button>
@@ -75,7 +76,7 @@
       
 
       <div class="gallery-photos">
-        <h2 class="photos-heading">Fotky zo svadieb</h2>
+        <h2 class="photos-heading animate">Fotky zo svadieb</h2>
         <div class="container">
         
           <div class="gallery" id="gallery">
@@ -88,6 +89,7 @@
 
       <script src="./lightbox-plus-jquery.js"></script>
       <script type="module" src="./index-data.js"></script>
+      
 </body>
 
 <footer>© 2022 MAYOMEDIA. Website created by Filip David</footer>
