@@ -11,10 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./lightbox.css">
-    <script defer src="./heh.js">
-    </script>
+    
 </head>
 <body>
+  <div id="loader"></div>
+  <div id="content-of-page">
   <div class="nav">
     <input type="checkbox" id="nav-check">
     <div class="nav-header">
@@ -47,7 +48,7 @@
         <div class="images">
           <img src="" id="welcome-img-img" alt="MAYOMEDIA image">
         </div>
-        <div class="text">
+        <div class="text index-text">
           <h1 class="heh" id="name-welcome"></h1>
           <h2 id="service-w"></h2>
 
@@ -56,9 +57,9 @@
 
       <div class="about">
         <div class="about-text">
-          <h3 class="animate">O Mne</h3>
-          <h2 class="animate">AHOJ</h2>
-          <p class="animate" id="text-about"></p>
+          <h3 class="index-animate">O Mne</h3>
+          <h2 class="index-anima">AHOJ</h2>
+          <p class="index-animate" id="text-about"></p>
         </div>
         <div class="about-img">
           <img src="https://www.cmu.edu/brand/brand-guidelines/images/colors-black-600x600.png" alt="img">
@@ -67,7 +68,7 @@
       </div>
 
       <div class="video-carousel" id="video-carousel">
-        <h2 class="animate">Svadobné videá</h2>
+        <h2 class="index-animate">Svadobné videá</h2>
         
         <button class="nav-button" id="prev">&#8249;</button>
         <button class="nav-button" id="next">&#8250;</button>
@@ -76,7 +77,7 @@
       
 
       <div class="gallery-photos">
-        <h2 class="photos-heading animate">Fotky zo svadieb</h2>
+        <h2 class="photos-heading index-animate">Fotky zo svadieb</h2>
         <div class="container">
         
           <div class="gallery" id="gallery">
@@ -84,15 +85,15 @@
           </div>
         </div>
       </div>
-      
+    </div>
 
 
       <script src="./lightbox-plus-jquery.js"></script>
       <script type="module" src="./index-data.js"></script>
-      
+      <script defer src="./heh.js"></script>
 </body>
 
-<footer>© 2022 MAYOMEDIA. Website created by Filip David</footer>
+<footer id="r">© 2022 MAYOMEDIA. Website created by Filip David</footer>
 <script type="module" src="./firebase.js"></script>
 
 </html>
