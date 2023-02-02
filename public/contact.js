@@ -51,3 +51,71 @@ form.addEventListener('submit', (e) => {
     })
     }
 })
+
+document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('click', function() {
+      let selectedText = item.querySelector('p').innerText;
+      let textArea = document.createElement("textarea");
+      textArea.value = selectedText;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+      console.log("Copied to clipboard: " + selectedText);
+  
+      // Display a gif and message after copy
+      
+      item.innerHTML += '<p>Skopirovane</p>';
+  
+      // Revert back to original text after 2 seconds with smooth transition
+      setTimeout(function() {
+        item.style.opacity = 0;
+        setTimeout(function() {
+          item.innerHTML = '<img src="' + item.querySelector('img').src + '"/>';
+          item.innerHTML += '<p>' + selectedText + '</p>';
+          item.style.opacity = 1;
+        }, 500);
+      }, 2000);
+    });
+  });
+
+  document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('click', function() {
+      let selectedText = item.querySelector('p').innerText;
+      let imageSrc = item.querySelector('img').src;
+      let textArea = document.createElement("textarea");
+      textArea.value = selectedText;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+      console.log("Copied to clipboard: " + selectedText);
+  
+      // Display a gif and message after copy
+      
+      item.innerHTML += '<p></p>';
+  
+          // Display a gif and message after copy
+    let copiedMessage = "Skopirovane";
+    if (selectedText.includes("@")) {
+      copiedMessage = "Email copied";
+    } else if (selectedText.includes("+")) {
+      copiedMessage = "Phone copied";
+    } else {
+      copiedMessage = "Address copied";
+    }
+    item.innerHTML = '<img src="https://thumbs.gfycat.com/ShyCautiousAfricanpiedkingfisher-max-1mb.gif" width="48" height="48"/>';
+    item.innerHTML += '<p>' + copiedMessage + '</p>';
+
+      // Revert back to original text after 2 seconds with smooth transition
+      setTimeout(function() {
+        item.style.opacity = 0;
+        setTimeout(function() {
+          item.innerHTML = '<img src="' + imageSrc + '"/>';
+          item.innerHTML += '<p>' + selectedText + '</p>';
+          item.style.opacity = 1;
+        }, 500);
+      }, 2000);
+    });
+  });
+  

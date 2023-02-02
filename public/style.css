@@ -1877,7 +1877,7 @@ footer {
   height: 100vh;
   z-index: 1;
   overflow: hidden;
-  background: #000 url('Timeline\ 1\ \(1\).gif') no-repeat center center;
+  background: #000 url('logo.gif') no-repeat center center;
   background-size: contain;
 }
 
