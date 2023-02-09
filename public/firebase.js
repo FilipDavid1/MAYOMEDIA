@@ -30,3 +30,16 @@ export const db = getFirestore();
 
 export { set, ref, update, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, doc, addDoc, collection, getDocs, onSnapshot, deleteDoc, updateDoc };
 export { ref as sRef, uploadBytesResumable, getDownloadURL, getStorage };
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    document.getElementById('sign-out').style.display = 'inline-block';
+    // ...
+  } else {
+    // User is signed out
+      document.getElementById('sign-out').style.display = 'none';
+    // ...
+  }
+});

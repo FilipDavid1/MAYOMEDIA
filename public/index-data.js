@@ -26,39 +26,19 @@ onSnapshot(welcomeRef, (querySnapshot) => {
 })
 
 //about data
-// onSnapshot(aboutRef, () =>{
-//     let textA = document.getElementById('text-about');
+onSnapshot(aboutRef, () =>{
+    let textA = document.getElementById('text-about');
+    let aboutImg = document.getElementById('about-img-img');
 
-//     getDocs(aboutRef).then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//             textA.innerHTML = doc.data().text;
-//         });
-//     });
-// })
-
-auth.onAuthStateChanged(user => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      onSnapshot(aboutRef, () =>{
-        let textA = document.getElementById('text-about');
-        let aboutImg = document.getElementById('about-img-img');
-
-        getDocs(aboutRef).then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                textA.innerHTML = doc.data().text;
-                aboutImg.src = doc.data().img;
-            });
+    getDocs(aboutRef).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            textA.innerHTML = doc.data().text;
+            aboutImg.src = doc.data().img;
         });
-    })
-      // ...
-    } else {
-      // User is signed out
-      console.log("User is signed out");
-      textA.innerHTML = "Please login to view this content";
-      // ...
-    }
-  });
+    });
+})
+
+
 
 // // foreach service data in card container
 // let services = [];
@@ -198,6 +178,15 @@ onSnapshot(videoRef, (querySnapshot) => {
     document.getElementById("prev").onclick = prevSlide;
 });
      
+
+//display sign out button when user is logged in
+document.getElementById('sign-out').addEventListener('click', (e) => {
+    e.preventDefault();
+    auth.signOut().then(() => {
+        console.log('user signed out');
+        window.location.href = './index.html';
+    })
+});
 
 
 
