@@ -19,7 +19,7 @@ window.onload = function() {
       }); 
     });
   
-    const hiddenElements = document.querySelectorAll('.index-animate, .index-text');
+    const hiddenElements = document.querySelectorAll('.index-texts, .index-text');
     hiddenElements.forEach((element) => {
       observer.observe(element);
     });
