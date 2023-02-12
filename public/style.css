@@ -1845,7 +1845,7 @@ footer {
 }
 
 /*animations*/
-.index-animate {
+.index-texts {
   opacity: 0;
   filter: blur(5px);
   transform: translateX(-100%);
