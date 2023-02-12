@@ -319,14 +319,14 @@ h2 {
 }
 
 @media screen and (max-width: 992px) {
-  .animate {
+  .index-texts {
     opacity: 0;
     filter: blur(3px);
     transform: translateX(-50%);
     transition: all 0.8s;
   }
 
-  .text {
+  .index-text {
     opacity: 0;
     filter: blur(3px);
     transform: translateX(+50%);
@@ -473,14 +473,14 @@ h2 {
 
 @media screen and (max-width: 770px) {
   /*animation*/
-  .animate {
+  .index-texts {
     opacity: 0;
     filter: blur(3px);
     transform: translateX(-50%);
     transition: all 0.8s;
   }
 
-  .text {
+  .index-text {
     opacity: 0;
     filter: blur(3px);
     transform: translateX(+50%);
@@ -1845,14 +1845,14 @@ footer {
 }
 
 /*animations*/
-.index-texts {
+.brum {
   opacity: 0;
   filter: blur(5px);
   transform: translateX(-100%);
   transition: all 1s;
 }
 
-.index-text {
+.index-heading {
   opacity: 0;
   filter: blur(5px);
   transform: translateX(+100%);
