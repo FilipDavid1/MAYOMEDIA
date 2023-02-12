@@ -51,7 +51,6 @@ onSnapshot(colRef, (querySnapshot) => {
 bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    
     const content = document.getElementById('services-content');
     
     if(credentialsForm.style.display === 'none' || credentialsForm.style.display === ''){

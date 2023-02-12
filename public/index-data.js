@@ -2,27 +2,26 @@ import { db, collection, getDocs, onSnapshot, auth} from './firebase.js';
 
 
 //collection reference
-const welcomeRef = collection(db, 'welcome-data');
+// const welcomeRef = collection(db, 'welcome-data');
 const aboutRef = collection(db, 'about-data');
 const serviceRef = collection(db, 'services');
 const photosRef = collection(db, 'photos');
 const videoRef = collection(db, 'videos');
 
 //welcome data
-let welcomeData = [];
-onSnapshot(welcomeRef, (querySnapshot) => {
-    let nameW = document.getElementById('name-welcome');  
-    let servicesW = document.getElementById('service-w');
+const welcomeRef = collection(db, 'welcome-data');
+onSnapshot(welcomeRef, () => {
+    let nameWelcome = document.getElementById('name-welcome');  
+    let servicesWelcome = document.getElementById('service-w');
     let welcomeImg = document.getElementById('welcome-img-img');
-    // let textW = document.getElementById('text-welcome');
 
-    querySnapshot.docs.forEach((doc) =>{
-        welcomeData.push({ ...doc.data() })
-    })
-    nameW.innerHTML = welcomeData[0].name;
-    servicesW.innerHTML = welcomeData[0].service;
-    welcomeImg.src = welcomeData[0].img;
-    // textW.innerHTML = welcomeData[0].text;
+    getDocs(welcomeRef).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            nameWelcome.innerHTML = doc.data().name;
+            servicesWelcome.innerHTML = doc.data().service;
+            welcomeImg.src = doc.data().img;
+        });
+    });
 })
 
 //about data
