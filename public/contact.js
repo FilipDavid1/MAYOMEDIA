@@ -61,7 +61,6 @@ document.querySelectorAll('.item').forEach(item => {
       textArea.select();
       document.execCommand("copy");
       textArea.remove();
-      console.log("Copied to clipboard: " + selectedText);
   
       // Display a gif and message after copy
       
@@ -98,11 +97,11 @@ document.querySelectorAll('.item').forEach(item => {
           // Display a gif and message after copy
     let copiedMessage = "Skopirovane";
     if (selectedText.includes("@")) {
-      copiedMessage = "Email copied";
+      copiedMessage = "Email bol skopírovaný";
     } else if (selectedText.includes("+")) {
-      copiedMessage = "Phone copied";
+      copiedMessage = "Telefónne číslo bolo skopírované";
     } else {
-      copiedMessage = "Address copied";
+      copiedMessage = "Adresa bola skopírovaná";
     }
     item.innerHTML = '<img src="https://thumbs.gfycat.com/ShyCautiousAfricanpiedkingfisher-max-1mb.gif" width="48" height="48"/>';
     item.innerHTML += '<p>' + copiedMessage + '</p>';

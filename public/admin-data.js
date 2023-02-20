@@ -404,18 +404,7 @@ function generateIframe(vimeoLink) {
     iframe.frameborder = "0";
     iframe.allow = "autoplay; fullscreen";
     return iframe;
-  }
-
-//generate link from iframe
-function generateLink(iframe) {
-    var videoId = iframe.split("/").pop().split("?")[0];
-    var link = document.createElement("a");
-    link.href = "https://vimeo.com/" + videoId;
-    link.innerHTML = "https://vimeo.com/" + videoId;
-    return link;
-}
-  
-  
+  }  
 
 //video data
 let videos = [];
@@ -506,7 +495,7 @@ onSnapshot(rezervationRef, (querySnapshot) => {
         <section class="rezervation">
             <article class="rezervation__info">
                 <h2 class="rezervation__name">${rezervation.service}</h2>
-                <label class="rezervation__label">Meno:"</label>
+                <label class="rezervation__label">Meno:</label>
                 <p class="rezervation__phone">${rezervation.name}</p>
                 <label class="rezervation__label">Email:</label>
                 <p class="rezervation__email">${rezervation.email}</p>

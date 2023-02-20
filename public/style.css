@@ -1845,14 +1845,14 @@ footer {
 }
 
 /*animations*/
-.brum {
+.index-texts {
   opacity: 0;
   filter: blur(5px);
   transform: translateX(-100%);
   transition: all 1s;
 }
 
-.index-heading {
+.index-text {
   opacity: 0;
   filter: blur(5px);
   transform: translateX(+100%);

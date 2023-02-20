@@ -47,12 +47,10 @@ onSnapshot(colRef, (querySnapshot) => {
 
 
 
-
+const content = document.getElementById('services-content');
 bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const content = document.getElementById('services-content');
-    
     if(credentialsForm.style.display === 'none' || credentialsForm.style.display === ''){
         //show form with animation
 
