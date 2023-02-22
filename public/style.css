@@ -1040,8 +1040,6 @@ h2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
-  height: 4rem;
   border: none;
   width: 2rem;
   font-size: 5rem;
@@ -1052,6 +1050,7 @@ h2 {
   background-color: transparent;
   color: white;
 }
+
 #prev {
   left: 0;
   margin: 0 1rem;
@@ -1837,8 +1836,8 @@ footer {
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: white;
-  color: #252525;
+  background-color: #AA1A45;
+  color: white;
   text-align: center;
   flex-shrink: 0;
   width: 100%;

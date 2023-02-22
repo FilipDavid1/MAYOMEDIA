@@ -36,10 +36,17 @@ auth.onAuthStateChanged(user => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     document.getElementById('sign-out').style.display = 'inline-block';
+    document.getElementById('admin').style.display = 'inline-block';
     // ...
   } else {
     // User is signed out
       document.getElementById('sign-out').style.display = 'none';
+      document.getElementById('admin').style.display = 'none';
     // ...
   }
+});
+
+document.getElementById('sign-out').addEventListener('click', () => {
+  window.location.href = './index.html';
+  auth.signOut();
 });
