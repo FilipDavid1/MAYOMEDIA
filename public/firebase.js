@@ -47,6 +47,6 @@ auth.onAuthStateChanged(user => {
 });
 
 document.getElementById('sign-out').addEventListener('click', () => {
-  window.location.href = './index.html';
+  window.location.replace("index.html");
   auth.signOut();
 });

@@ -1,6 +1,9 @@
 html {
   scroll-behavior: smooth;
 }
+a:hover {
+  cursor: pointer;
+}
 
 .nav-links a {
   display: block;
