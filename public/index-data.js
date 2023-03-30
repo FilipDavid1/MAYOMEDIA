@@ -115,17 +115,27 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 //generate vimeo iframe
-function generateIframe(vimeoLink) {
-    var videoId = vimeoLink.split("/").pop().split("?")[0];
+function generateIframe(videoLink) {
+    var videoId;
     var iframe = document.createElement("iframe");
+    
+    //check if link is vimeo or youtube
+    if (videoLink.indexOf("vimeo") !== -1) {
+    videoId = videoLink.split("/").pop().split("?")[0];
     iframe.src = "https://player.vimeo.com/video/" + videoId;
+    } else if (videoLink.indexOf("youtube") !== -1) {
+    videoId = videoLink.split("v=")[1];
+    iframe.src = "https://www.youtube.com/embed/" + videoId;
+    } else {
+    //invalid link
+    return null;
+    }
     iframe.width = "1080";
     iframe.height = "720";
     iframe.frameborder = "0";
     iframe.allow = "autoplay; fullscreen";
     return iframe;
-  }
-  
+  }  
   
 
 //video data
