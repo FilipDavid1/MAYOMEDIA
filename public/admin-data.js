@@ -395,16 +395,28 @@ photoSubmit.addEventListener('click', async (e) => {
 });
 
 //generate vimeo iframe
-function generateIframe(vimeoLink) {
-    var videoId = vimeoLink.split("/").pop().split("?")[0];
+function generateIframe(videoLink) {
+    var videoId;
     var iframe = document.createElement("iframe");
+    
+    //check if link is vimeo or youtube
+    if (videoLink.indexOf("vimeo") !== -1) {
+    videoId = videoLink.split("/").pop().split("?")[0];
     iframe.src = "https://player.vimeo.com/video/" + videoId;
+    } else if (videoLink.indexOf("youtube") !== -1) {
+    videoId = videoLink.split("v=")[1];
+    iframe.src = "https://www.youtube.com/embed/" + videoId;
+    } else {
+    //invalid link
+    return null;
+    }
+    
     iframe.width = "200";
     iframe.height = "";
     iframe.frameborder = "0";
     iframe.allow = "autoplay; fullscreen";
     return iframe;
-  }  
+    } 
 
 //video data
 let videos = [];
@@ -852,6 +864,8 @@ messageTable.addEventListener('click', async (e) => {
 
 //display confirmed rezervations in calendar and disable that day
 var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+    plugins: [ '@fullcalendar/google-calendar' ],
+    googleCalendarApiKey: 'AIzaSyB_eVx2xQ0yFQu8mqJI67JvVUI18pe3zPs',
     events: function(info, successCallback, failureCallback) {
         var events = [];
         onSnapshot(rezervationRef, (querySnapshot) => {
@@ -865,13 +879,34 @@ var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
                         allDay: true,
                         backgroundColor: '#AA1A45',
                         borderColor: '#252525',
-                });
-            }
-                
+                        editable: false, // disable editing of confirmed reservations
+                        extendedProps: {
+                            confirmed: true
+                        }
+                    });
+
+                    // create new event in Google Calendar
+                    var event = {
+                        title: data.service + ' - ' + data.name,
+                        start: data.date,
+                        end: data.date,
+                        extendedProps: {
+                            confirmed: true
+                        }
+                    };
+                    var calendarAPI = calendar.getApi();
+                    calendarAPI.addEvent(event, function(info) {
+                        console.log('Event created in Google Calendar:', info);
+                    }, function(error) {
+                        console.error('Error creating event in Google Calendar:', error);
+                    });
+                }
+            });
+            successCallback(events);
         });
-        successCallback(events);
-    });
-},
+    },
     locale: 'sk',
 });
+
 calendar.render();
+
