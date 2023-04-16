@@ -557,77 +557,264 @@ rezervationTable.addEventListener('click', async (e) => {
     }
 });
 
-
-
-
-// Set up environment variables
-const CLIENT_ID = "150149852780-pdf6g0d8f9f47at72qcgpkpmf1st60rs.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
-const REDIRECT_URI = "https://mayomedia-72317.web.app/";
-
-// Use the environment variables to set up the OAuth2 client
-const { google } = require("googleapis");
-const oAuth2Client = new google.auth.OAuth2(
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REDIRECT_URI
-);
-
-// Set up the Google Calendar API client
-const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
-
-// Add an event to Google Calendar after confirming a reservation
+//confirm rezervation and send email
 rezervationTable.addEventListener('click', async (e) => {
-  e.preventDefault();
-  if (e.target.classList.contains('rezervation__button')) {
-    let id = e.target.id.split('--')[1];
-    var ref = doc(db, "events", id);
-    await updateDoc(ref, {
-      confirmed: true
-    }).then(() => {
-      // Send email
-      Email.send({
-        // ...
-      }).then((message) => {
-        console.log(message);
+    e.preventDefault();
+    if(e.target.classList.contains('rezervation__button')){
+        let id = e.target.id.split('--')[1];
+        var ref = doc(db, "events", id);
+        await updateDoc(ref, {
+            confirmed: true
+        }).then(() => {
+            //send email
+            Email.send({
+                SecureToken: "4724d794-83ea-4e48-98f1-bac030137e0b",
+                To : rezervations[rezervationIds.indexOf(id)].email,
+                From : "filipenkodavid@gmail.com",
+                Subject : "Potvrdenie rezervácie",
+                //add name to body
+                Body : `<!DOCTYPE html>
+                <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+                <head>
+                <title></title>
+                <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+                <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+                <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->
+                <style>
+                        * {
+                            box-sizing: border-box;
+                        }
+                
+                        body {
+                            margin: 0;
+                            padding: 0;
+                            background-color: black !important;
+                            color: #fff !important;
+                        }
+                
+                        a[x-apple-data-detectors] {
+                            color: inherit !important;
+                            text-decoration: inherit !important;
+                        }
+                
+                        #MessageViewBody a {
+                            color: inherit;
+                            text-decoration: none;
+                        }
+                
+                        p {
+                            line-height: inherit
+                        }
+                
+                        .desktop_hide,
+                        .desktop_hide table {
+                            mso-hide: all;
+                            display: none;
+                            max-height: 0px;
+                            overflow: hidden;
+                        }
+                
+                        @media (max-width:520px) {
+                            .desktop_hide table.icons-inner {
+                                display: inline-block !important;
+                            }
+                
+                            .icons-inner {
+                                text-align: center;
+                            }
+                
+                            .icons-inner td {
+                                margin: 0 auto;
+                            }
+                
+                            .row-content {
+                                width: 100% !important;
+                            }
+                
+                            .mobile_hide {
+                                display: none;
+                            }
+                
+                            .stack .column {
+                                width: 100%;
+                                display: block;
+                            }
+                
+                            .mobile_hide {
+                                min-height: 0;
+                                max-height: 0;
+                                max-width: 0;
+                                overflow: hidden;
+                                font-size: 0px;
+                            }
+                
+                            .desktop_hide,
+                            .desktop_hide table {
+                                display: table !important;
+                                max-height: none !important;
+                            }
+                        }
+                    </style>
+                </head>
+                <body style="background-color: #FFFFFF; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+                <table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #FFFFFF;" width="100%">
+                <tbody>
+                <tr>
+                <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tbody>
+                <tr>
+                <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 500px;" width="500">
+                <tbody>
+                <tr>
+                <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
+                <table border="0" cellpadding="0" cellspacing="0" class="image_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0" class="heading_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad" style="width:100%;text-align:center;">
+                <h1 style="margin: 0; color: #555555; font-size: 23px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; line-height: 120%; text-align: center; direction: ltr; font-weight: 700; letter-spacing: normal; margin-top: 0; margin-bottom: 0;">${rezervations[rezervationIds.indexOf(id)].name}, S radosťou potvrdzujeme, že poskytneme služby kameramana pre váš špeciálny deň.</h1>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="paragraph_block block-3" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <div style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+                <p style="margin: 0;">Dodatočné informácie:</p>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="list_block block-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <ul style="margin: 0; padding: 0; margin-left: 20px; list-style-type: revert; color: #000000; font-size: 14px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-weight: 400; line-height: 120%; text-align: left; direction: ltr; letter-spacing: 0px;">
+                <li style="margin-bottom: 0px;">Miesto konania: </li>
+                <li style="margin-bottom: 0px;">Dátum konania: ${rezervations[rezervationIds.indexOf(id)].date}</li>
+                <li>Cena: ${rezervations[rezervationIds.indexOf(id)].price}€</li>
+                </ul>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="divider_block block-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad">
+                <div align="center" class="alignment">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
+                </tr>
+                </table>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="paragraph_block block-6" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <div style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+                <p style="margin: 0; margin-bottom: 16px;">Pre ďalšie otázky ma neváhajte kontaktovať</p>
+                <p style="margin: 0; margin-bottom: 16px;">Kontaktná osoba: Mayo Dávid</p>
+                <p style="margin: 0; margin-bottom: 16px;">Kontaktné číslo: +421 908 253 293</p>
+                <p style="margin: 0;">Email:  <a href="mailto:gifot65349@fom8.com?subject=Otázky k rezervácií ">Pošlite mi email</a></p>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="divider_block block-7" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad">
+                <div align="center" class="alignment">
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
+                </tr>
+                </table>
+                </div>
+                </td>
+                </tr>
+                </table>
+                <table border="0" cellpadding="10" cellspacing="0" class="paragraph_block block-8" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
+                <tr>
+                <td class="pad">
+                <div style="color:#000000;font-size:14px;font-family:Arial, Helvetica Neue, Helvetica, sans-serif;font-weight:400;line-height:120%;text-align:left;direction:ltr;letter-spacing:0px;mso-line-height-alt:16.8px;">
+                <p style="margin: 0; margin-bottom: 16px;">Prosím, dajte nám vedieť, ak sú tu akékoľvek zmeny alebo ak máte nejaké špeciálne požiadavky na vaše svadobné video.</p>
+                <p style="margin: 0;">Tešíme sa na zachytenie špeciálnych okamihov vášho veľkého dňa!</p>
+                </div>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tbody>
+                <tr>
+                <td>
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 500px;" width="500">
+                <tbody>
+                <tr>
+                <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
+                <table border="0" cellpadding="0" cellspacing="0" class="icons_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="pad" style="vertical-align: middle; color: #9d9d9d; font-family: inherit; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                <tr>
+                <td class="alignment" style="vertical-align: middle; text-align: center;">
+                <!--[if vml]><table align="left" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
+                <!--[if !vml]><!-->
+                <table cellpadding="0" cellspacing="0" class="icons-inner" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;">
+                <!--<![endif]-->
+                
+                </table>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tbody>
+                </table><!-- End -->
+                </body>
+                </html>`
+            }).then(
 
-        // Set up the OAuth2 client credentials with the access token and refresh token
-        oAuth2Client.setCredentials({
-          access_token: ACCESS_TOKEN,
-          refresh_token: REFRESH_TOKEN,
+                //token 43171db-5be2-4935-9813-559d62b2ca2d 
+                message => {
+                    console.log(message);
+                    
+                }
+            );
+        }).catch((error) => {
+            console.log(error);
+            swal({
+                title: "Prosím prihláste sa",
+                icon: "error",
+                button: "OK",
+            })
         });
-
-        // Add the event to Google Calendar
-        calendar.events.insert(
-          {
-            calendarId: "primary",
-            resource: {
-              summary: "Reservation",
-              start: {
-                dateTime: "2023-03-31T10:00:00+01:00",
-                timeZone: "Europe/Bratislava",
-              },
-              end: {
-                dateTime: "2023-03-31T11:00:00+01:00",
-                timeZone: "Europe/Bratislava",
-              },
-            },
-          },
-          (err, res) => {
-            if (err) return console.error("The API returned an error: " + err);
-            console.log("Event created: %s", res.data.htmlLink);
-          }
-        );
-      });
-    }).catch((error) => {
-      console.log(error);
-      swal({
-        title: "Please log in",
-        icon: "error",
-        button: "OK",
-      })
-    });
-  }
+    }
 });
 
 
@@ -676,7 +863,7 @@ messageTable.addEventListener('click', async (e) => {
 });
 
 //display confirmed rezervations in calendar and disable that day
-var cal = new FullCalendar.Calendar(document.getElementById('calendar'), {
+var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
     events: function(info, successCallback, failureCallback) {
         var events = [];
         onSnapshot(rezervationRef, (querySnapshot) => {
@@ -699,5 +886,5 @@ var cal = new FullCalendar.Calendar(document.getElementById('calendar'), {
 },
     locale: 'sk',
 });
-cal.render();
+calendar.render();
 

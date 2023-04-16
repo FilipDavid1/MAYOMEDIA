@@ -681,6 +681,11 @@ h2 {
   .form p {
     text-align: start;
   }
+
+  /*admin page sidebar*/
+  .aside {
+    display: none;
+  }
  
 }
 
@@ -1699,56 +1704,14 @@ select::-ms-expand {
   margin-bottom: 1em;
 }
 
-/*admin.html*/
-.aside {
-  background: #AA1A45;
-  padding: 10px;
-  width: 200px;
-  position: fixed;
-  height: 100%;
-}
 
-.aside ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.aside ul li {
-  padding: 1em;
-  border-bottom: 1px solid #fff;
-}
-
-.aside img {
-  width: 90%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 120px;
-}
-
-.aside ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-.aside ul li a:hover {
-  display: block;
-  text-decoration: none;
-  color: #252525;
-  transition: 0.5s ease;
-  transform: translateX(0%);
-  cursor: pointer;
-}
 
 /*admin.html*/
 .page-data section {
-  margin-left: 200px;
   padding: 1em;
   color: #252525 !important;
   background-color: white;
-  margin:1.5em 1.5em 1.5em 14em;
+  margin:1.5em;
 }
 
 
