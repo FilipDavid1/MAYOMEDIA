@@ -398,7 +398,6 @@ photoSubmit.addEventListener('click', async (e) => {
 function generateIframe(videoLink) {
     var videoId;
     var iframe = document.createElement("iframe");
-    
     //check if link is vimeo or youtube
     if (videoLink.indexOf("vimeo") !== -1) {
     videoId = videoLink.split("/").pop().split("?")[0];
@@ -520,9 +519,9 @@ onSnapshot(rezervationRef, (querySnapshot) => {
                 <label class="rezervation__label">Cena:</label>
                 <p class="rezervation__service">${rezervation.price}</p>
             </article>
-            <article class="rezervation__buttons">
+            <article class="buttons">
                 <button class="rezervation__button button" id="rezervation__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Potvrdiť</button>
-                <button class="rezervation__button button" id="reservation__buttond--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
+                <button class="cancel__button button" id="cancel__button--${rezervationIds[rezervations.indexOf(rezervation)]}">Zmazať</button>
             </article>
         </section>
     `).join('');
@@ -530,7 +529,8 @@ onSnapshot(rezervationRef, (querySnapshot) => {
 
 //delete rezervation
 rezervationTable.addEventListener('click', async (e) => {
-    if(e.target.classList.contains('rezervation__buttond')){
+    if(e.target.classList.contains('cancel__button')){
+        console.log('wow');
         let id = e.target.id.split('--')[1];
         var ref = doc(db, "events", id);
         await deleteDoc(ref).then(() => {
@@ -695,7 +695,6 @@ rezervationTable.addEventListener('click', async (e) => {
                 <tr>
                 <td class="pad">
                 <ul style="margin: 0; padding: 0; margin-left: 20px; list-style-type: revert; color: #000000; font-size: 14px; font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-weight: 400; line-height: 120%; text-align: left; direction: ltr; letter-spacing: 0px;">
-                <li style="margin-bottom: 0px;">Miesto konania: </li>
                 <li style="margin-bottom: 0px;">Dátum konania: ${rezervations[rezervationIds.indexOf(id)].date}</li>
                 <li>Cena: ${rezervations[rezervationIds.indexOf(id)].price}€</li>
                 </ul>
